@@ -23,4 +23,4 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
-//lol
+//lol KAKVO STABA MZ
