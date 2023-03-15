@@ -1,0 +1,18 @@
+﻿@model EventManager.Models.AssociateViewModel
+
+<h1>Associate Attendee with Event</h1>
+<div class="row">
+	<div class="col-md-4">
+		<form method="post">
+			<div class="form-group">
+				<label for="eventId">Event:</label>
+				@Html.DropDownListFor(m => m.EventId, ViewBag.Events as SelectList, new { @class = "form-control" })
+			</div>
+			<div class="form-group">
+				<label for="attendeeId">Attendee:</label>
+				@Html.DropDownListFor(m => m.AttendeeId, ViewBag.Attendees as SelectList, new { @class = "form-control" })
+			</div>
+			<button type="submit" class="btn btn-primary">Associate</button>
+		</form>
+	</div>
+</div>
