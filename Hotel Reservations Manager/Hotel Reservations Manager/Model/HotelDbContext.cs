@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
+
 namespace Hotel_Reservations_Manager.Model
 {
     public class HotelDbContext:DbContext
     {
 
+        
         public HotelDbContext(DbContextOptions options)
           : base(options)
         {
@@ -22,22 +24,39 @@ namespace Hotel_Reservations_Manager.Model
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Reservation>()
-                .HasMany(c => c.Clients)
-                .WithMany(r => r.Reservations)
-                .HasForeignKey(s => s.ClientId)
-                .UsingEntity<Dictionary<string, object>>(
-                    "ClientReservation",
-                    j => j.HasOne<Reservation>().WithMany().HasForeignKey("ResId"),
-                    j => j.HasOne<Clients>().WithMany().HasForeignKey("ClientId"),
-                    j =>
-                    {
-                        j.Property<int>("Id").UseIdentityColumn();
-                        j.HasKey("Id");
-                    });
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Reservation>(entity =>
+            {
+                entity.HasKey(e => e.ResId);
+                entity.HasMany(c => c.Clients)
+                .WithMany(r => r.Reservations);
+            });
 
 
-           
+
+            modelBuilder.Entity<Clients>(entity =>
+            {
+                entity.HasKey(e => e.ClientId);
+                entity.HasMany(r => r.Reservations)
+                .WithMany(c => c.Clients);
+            });
+
+            modelBuilder.Entity<Rooms>(entity =>
+            {
+                entity.HasKey(r => r.RoomsId);
+              
+
+            });
+
+            modelBuilder.Entity<Users>(entity =>
+            {
+                entity.HasKey(e => e.EGN);
+
+            });
+
+
+
         }
     }
 }

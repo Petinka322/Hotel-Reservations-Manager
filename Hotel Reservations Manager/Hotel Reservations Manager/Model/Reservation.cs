@@ -8,7 +8,7 @@ namespace Hotel_Reservations_Manager.Model
 
         public int ResId { get; set; }
         
-        public int RoomId { get; set; }
+        public int RoomsId { get; set; }
        
         public string Usename { get; set; }
         public virtual HashSet<Clients> Clients { get; set; }
