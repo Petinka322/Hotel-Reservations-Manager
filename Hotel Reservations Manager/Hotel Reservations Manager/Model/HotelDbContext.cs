@@ -20,6 +20,7 @@ namespace Hotel_Reservations_Manager.Model
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLazyLoadingProxies();
+           
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

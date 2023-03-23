@@ -12,8 +12,8 @@ namespace Hotel_Reservations_Manager.Model
        
         public string Usename { get; set; }
         public virtual HashSet<Clients> Clients { get; set; }
-        public DateOnly Arrival_date    { get; set; }
-        public DateOnly Departure_date { get; set; }
+        public DateTime Arrival_date    { get; set; }
+        public DateTime Departure_date { get; set; }
         public bool Breakfast { get; set; }
         public bool All_inclusive { get; set; }
         public double Price { get; set; }

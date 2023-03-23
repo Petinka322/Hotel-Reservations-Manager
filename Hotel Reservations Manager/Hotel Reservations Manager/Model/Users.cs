@@ -13,9 +13,9 @@
         public string EGN { get; set; }
         public string Phone { get; set; }
         public string E_mail { get; set; }
-        public DateOnly Hire_date { get; set; }
+        public DateTime Hire_date { get; set; }
         public bool Is_active { get; set; }
-        public DateOnly Release_date { get; set; }  
+        public DateTime Release_date { get; set; }  
 
 
     }
