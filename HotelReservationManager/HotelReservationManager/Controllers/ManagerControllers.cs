@@ -18,12 +18,13 @@ namespace HotelReservationManager.Controllers
         {
             _context = context;
         }
-        public IActionResult Create()
+
+        public IActionResult Index()
         {
             return View();
         }
-        // GET: Users
-        public async Task<IActionResult> Index()
+        // GET: Users/Create
+        public async Task<IActionResult> CreateUser()
         {
             return View(await _context.Users.ToListAsync());
         }
@@ -31,7 +32,7 @@ namespace HotelReservationManager.Controllers
         // POST: Users/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Password,Username,First_name,Second_name,Last_name,EGN,Phone,E_mail,Hire_date,Is_active,Release_date")] Users user)
+        public async Task<IActionResult> CreateUser([Bind("Password,Username,First_name,Second_name,Last_name,EGN,Phone,E_mail,Hire_date,Is_active,Release_date")] Users user)
         {
             if (ModelState.IsValid)
             {
@@ -41,8 +42,8 @@ namespace HotelReservationManager.Controllers
             }
             return View(user);
         }
-        // GET: Users/Delete/5
-        public async Task<IActionResult> Delete(string? EGN)
+        // GET: Users/Delete
+        public async Task<IActionResult> DeleteUSER(string? EGN)
         {
             if (EGN == null || _context.Users == null)
             {
@@ -59,7 +60,7 @@ namespace HotelReservationManager.Controllers
             return View(user);
         }
 
-        // POST: Users/Delete/5
+        // POST: Users/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string EGN)
@@ -80,6 +81,61 @@ namespace HotelReservationManager.Controllers
         private bool UserExists(string EGN)
         {
             return _context.Users.Any(e => e.EGN == EGN);
+        }
+        // POST: Rooms/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateRoom([Bind("RoomsId, RoomsCapacity, RoomsType, Is_Available, Price_Adult, Price_Child")] Rooms rooms)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(rooms);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(rooms);
+        }
+        // GET: Rooms/Create
+        public async Task<IActionResult> CreateRooms()
+        {
+            return View(await _context.Rooms.ToListAsync());
+        }
+
+        // POST: Reservation/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateReservation([Bind("Username, Arrval_Date, Departure_Date, Breakfast, All_Inclusive, Price")] Reservation reservation)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(reservation);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(reservation);
+        }
+        // GET: Reservation/Create
+        public async Task<IActionResult> CreateReservation()
+        {
+            return View(await _context.Reservations.ToListAsync());
+        }
+        // POST: Clients/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateClients([Bind("ClientId, First_Name, Last_Name, Phone, E_mail, Adult")] Clients clients)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(clients);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(clients);
+        }
+        // GET: Clients/Create
+        public async Task<IActionResult> CreateClients()
+        {
+            return View(await _context.Clients.ToListAsync());
         }
     }
 }
