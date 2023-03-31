@@ -15,6 +15,8 @@ namespace HotelReservationManager.Models
         public DbSet<Users> Users { get; set; }
         public DbSet<Rooms> Rooms { get; set; }
 
+        public DbSet<ReservationClients> ReservationClients {get;set;}
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLazyLoadingProxies();
