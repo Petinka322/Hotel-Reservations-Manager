@@ -349,8 +349,8 @@ namespace HotelReservationManager.Controllers
         // GET: Attendees/Associate
         public async Task<IActionResult> Associate()
         {
-            var events = await _context.Events.ToListAsync();
-            var attendees = await _context.Attendees.ToListAsync();
+            var events = await _context.Reservations.ToListAsync();
+            var attendees = await _context.Clients.ToListAsync();
 
             ViewBag.Events = new SelectList(events, "Id", "Name");
             ViewBag.Attendees = new SelectList(attendees, "Id", "Name");
@@ -359,6 +359,7 @@ namespace HotelReservationManager.Controllers
         }
 
         // POST: Clients/Associate
+        /*
         [HttpPost]
         public async Task<IActionResult> Associate(int resId, int clientId)
         {
@@ -375,14 +376,15 @@ namespace HotelReservationManager.Controllers
 
             if (!contains)
             {
-                @event.EventAttendees.Add(new EventAttendee()
+                @reservation.ReservationClient.Add(new ReservationClient()
                 {
-                    AttendeeId = attendee.Id,
+                    ClientId = Client.Id,
                     EventId = @event.Id
                 });
             }
             return RedirectToAction(nameof(Index));
         }
+        */
         private bool ReservationExists(int resId)
         {
             return _context.Reservations.Any(e => e.ResId == resId);
@@ -391,5 +393,6 @@ namespace HotelReservationManager.Controllers
         {
             return _context.Clients.Any(e => e.ClientId == ClientId);
         }
+        
     }
 }

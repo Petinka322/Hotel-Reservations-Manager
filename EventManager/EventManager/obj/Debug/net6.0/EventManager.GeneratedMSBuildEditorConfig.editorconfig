@@ -9,81 +9,81 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = EventManager
 build_property.RootNamespace = EventManager
-build_property.ProjectDir = C:\Users\User\Desktop\Hotel-Reservations-Manager\Hotel-Reservations-Manager\EventManager\EventManager\
+build_property.ProjectDir = C:\Users\Plamen\Source\Repos\Petinka322\Hotel-Reservations-Manager\EventManager\EventManager\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\User\Desktop\Hotel-Reservations-Manager\Hotel-Reservations-Manager\EventManager\EventManager
+build_property.MSBuildProjectDirectory = C:\Users\Plamen\Source\Repos\Petinka322\Hotel-Reservations-Manager\EventManager\EventManager
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/User/Desktop/Hotel-Reservations-Manager/Hotel-Reservations-Manager/EventManager/EventManager/Views/Attendees/Associate.cshtml]
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/EventManager/EventManager/Views/Attendees/Associate.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW5kZWVzXEFzc29jaWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/Hotel-Reservations-Manager/Hotel-Reservations-Manager/EventManager/EventManager/Views/Attendees/Create.cshtml]
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/EventManager/EventManager/Views/Attendees/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW5kZWVzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/Hotel-Reservations-Manager/Hotel-Reservations-Manager/EventManager/EventManager/Views/Attendees/Delete.cshtml]
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/EventManager/EventManager/Views/Attendees/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW5kZWVzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/Hotel-Reservations-Manager/Hotel-Reservations-Manager/EventManager/EventManager/Views/Attendees/Details.cshtml]
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/EventManager/EventManager/Views/Attendees/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW5kZWVzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/Hotel-Reservations-Manager/Hotel-Reservations-Manager/EventManager/EventManager/Views/Attendees/Edit.cshtml]
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/EventManager/EventManager/Views/Attendees/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW5kZWVzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/Hotel-Reservations-Manager/Hotel-Reservations-Manager/EventManager/EventManager/Views/Attendees/Index.cshtml]
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/EventManager/EventManager/Views/Attendees/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW5kZWVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/Hotel-Reservations-Manager/Hotel-Reservations-Manager/EventManager/EventManager/Views/Events/Create.cshtml]
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/EventManager/EventManager/Views/Events/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/Hotel-Reservations-Manager/Hotel-Reservations-Manager/EventManager/EventManager/Views/Events/Delete.cshtml]
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/EventManager/EventManager/Views/Events/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/Hotel-Reservations-Manager/Hotel-Reservations-Manager/EventManager/EventManager/Views/Events/Details.cshtml]
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/EventManager/EventManager/Views/Events/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/Hotel-Reservations-Manager/Hotel-Reservations-Manager/EventManager/EventManager/Views/Events/Edit.cshtml]
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/EventManager/EventManager/Views/Events/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/Hotel-Reservations-Manager/Hotel-Reservations-Manager/EventManager/EventManager/Views/Events/Index.cshtml]
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/EventManager/EventManager/Views/Events/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/Hotel-Reservations-Manager/Hotel-Reservations-Manager/EventManager/EventManager/Views/Home/Index.cshtml]
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/EventManager/EventManager/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/Hotel-Reservations-Manager/Hotel-Reservations-Manager/EventManager/EventManager/Views/Home/Privacy.cshtml]
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/EventManager/EventManager/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/Hotel-Reservations-Manager/Hotel-Reservations-Manager/EventManager/EventManager/Views/Shared/Error.cshtml]
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/EventManager/EventManager/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/Hotel-Reservations-Manager/Hotel-Reservations-Manager/EventManager/EventManager/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/EventManager/EventManager/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/Hotel-Reservations-Manager/Hotel-Reservations-Manager/EventManager/EventManager/Views/_ViewImports.cshtml]
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/EventManager/EventManager/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/Hotel-Reservations-Manager/Hotel-Reservations-Manager/EventManager/EventManager/Views/_ViewStart.cshtml]
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/EventManager/EventManager/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/Hotel-Reservations-Manager/Hotel-Reservations-Manager/EventManager/EventManager/Views/Shared/_Layout.cshtml]
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/EventManager/EventManager/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-hl10o799jk

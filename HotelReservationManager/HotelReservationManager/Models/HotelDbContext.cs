@@ -1,5 +1,4 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace HotelReservationManager.Models
 {
@@ -14,8 +13,6 @@ namespace HotelReservationManager.Models
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Users> Users { get; set; }
         public DbSet<Rooms> Rooms { get; set; }
-
-        public DbSet<ReservationClients> ReservationClients {get;set;}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
