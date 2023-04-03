@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Hotel Reservations Manager",
+    "\\HotelReservationManager",
+    "\\HotelReservationManager\\HotelReservationManager",
+    "\\HotelReservationManager\\HotelReservationManager\\Models"
   ],
-  "SelectedNode": "\\HotelReservationManager.sln",
+  "SelectedNode": "\\HotelReservationManager\\HotelReservationManager\\Models\\Reservation.cs",
   "PreviewInSolutionExplorer": false
 }
