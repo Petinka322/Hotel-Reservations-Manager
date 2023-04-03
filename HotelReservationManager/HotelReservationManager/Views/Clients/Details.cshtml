@@ -1,0 +1,59 @@
+﻿@model HotelReservationManager.Models.Clients
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Attendee</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.First_Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.First_Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Last_Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Last_Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.E_mail)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.E_mail)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Adult)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Adult)
+        </dd>
+    </dl>
+    <h4>Reservations</h4>
+    @foreach (var reservationItem in Model.Reservations)
+    {
+        <a asp-controller="Reservations" asp-action="Details" asp-route-id=" @reservationItem.ResId">@reservationItem.RoomsId</a>
+        <a asp-controller="Reservations" asp-action="Details" asp-route-id=" @reservationItem.ResId">@reservationItem.Usename</a>
+        <a asp-controller="Reservations" asp-action="Details" asp-route-id=" @reservationItem.ResId">@reservationItem.Arrival_date</a>
+        <a asp-controller="Reservations" asp-action="Details" asp-route-id=" @reservationItem.ResId">@reservationItem.Departure_date</a>
+        <a asp-controller="Reservations" asp-action="Details" asp-route-id=" @reservationItem.ResId">@reservationItem.Breakfast</a>
+        <a asp-controller="Reservations" asp-action="Details" asp-route-id=" @reservationItem.ResId">@reservationItem.All_inclusive</a>
+        <a asp-controller="Reservations" asp-action="Details" asp-route-id=" @reservationItem.ResId">@reservationItem.Price</a>
+    }
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.ClientId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
