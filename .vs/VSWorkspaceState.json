@@ -6,8 +6,9 @@
     "\\HotelReservationManager\\HotelReservationManager",
     "\\HotelReservationManager\\HotelReservationManager\\Models",
     "\\HotelReservationManager\\HotelReservationManager\\Views",
-    "\\HotelReservationManager\\HotelReservationManager\\Views\\Clients"
+    "\\HotelReservationManager\\HotelReservationManager\\Views\\Client",
+    "\\HotelReservationManager\\HotelReservationManager\\Views\\Shared"
   ],
-  "SelectedNode": "\\HotelReservationManager\\HotelReservationManager\\Views\\Clients\\Index.cshtml",
+  "SelectedNode": "\\HotelReservationManager\\HotelReservationManager\\Views\\Client\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }

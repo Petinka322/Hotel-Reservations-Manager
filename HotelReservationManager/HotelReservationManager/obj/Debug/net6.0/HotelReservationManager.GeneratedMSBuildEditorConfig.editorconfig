@@ -16,24 +16,24 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Plamen\Source\Repos\Petinka322\Hotel-Reservations-Manager\HotelReservationManager\HotelReservationManager
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Clients/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50c1xDcmVhdGUuY3NodG1s
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Client/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Clients/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50c1xEZWxldGUuY3NodG1s
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Client/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Clients/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50c1xEZXRhaWxzLmNzaHRtbA==
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Client/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Clients/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50c1xFZGl0LmNzaHRtbA==
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Client/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Clients/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50c1xJbmRleC5jc2h0bWw=
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Client/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Home/Error.cshtml]
@@ -48,24 +48,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Reservations/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25zXENyZWF0ZS5jc2h0bWw=
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Reservation/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Reservations/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25zXERlbGV0ZS5jc2h0bWw=
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Reservation/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Reservations/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25zXERldGFpbHMuY3NodG1s
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Reservation/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Reservations/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25zXEVkaXQuY3NodG1s
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Reservation/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Reservations/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25zXEluZGV4LmNzaHRtbA==
+[C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Reservation/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Plamen/Source/Repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Shared/_ValidationScriptsPartial.cshtml]
