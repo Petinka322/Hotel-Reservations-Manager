@@ -1,4 +1,4 @@
-﻿@model HotelReservationManager.Models.Clients
+﻿@model HotelReservationManager.Models.Rooms
 
 @{
     ViewData["Title"] = "Details";
@@ -7,38 +7,38 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Client</h4>
+    <h4>Rooms</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.First_Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.First_Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Last_Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Last_Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.E_mail)
+            @Html.DisplayNameFor(model => model.RoomsCapacity)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.E_mail)
+            @Html.DisplayFor(model => model.RoomsCapacity)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Adult)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RoomsType)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Adult)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RoomsType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Is_Available)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Is_Available)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Price_Adult)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Price_Adult)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Price_Child)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Price_Child)
         </dd>
     </dl>
     <h4>Reservations</h4>

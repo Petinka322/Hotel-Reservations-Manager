@@ -1,0 +1,61 @@
+﻿@model IEnumerable<HotelReservationManager.Models.Rooms>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New Rooms</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.RoomsCapacity)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.RoomsType)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Is_Available)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Price_Adult)
+            </td>
+                <td>
+                @Html.DisplayNameFor(model => model.Price_Child)
+            </td>
+            <th></th>
+        </tr>
+    </thead>
+@*
+<tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.First_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Last_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.E_mail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adult)
+                </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ClientId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+*@

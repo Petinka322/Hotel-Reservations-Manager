@@ -1,14 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\Hotel Reservations Manager",
-    "\\HotelReservationManager",
-    "\\HotelReservationManager\\HotelReservationManager",
-    "\\HotelReservationManager\\HotelReservationManager\\Models",
-    "\\HotelReservationManager\\HotelReservationManager\\Views",
-    "\\HotelReservationManager\\HotelReservationManager\\Views\\Client",
-    "\\HotelReservationManager\\HotelReservationManager\\Views\\Shared"
+    ""
   ],
-  "SelectedNode": "\\HotelReservationManager\\HotelReservationManager\\Views\\Client\\Index.cshtml",
+  "SelectedNode": "\\HotelReservationManager.sln",
   "PreviewInSolutionExplorer": false
 }
