@@ -22,11 +22,6 @@ namespace HotelReservationManager.Controllers
         {
             return View(await _context.Users.ToListAsync());
         }
-        // GET: Users/Create
-        public async Task<IActionResult> CreateUser()
-        {
-            return View();
-        }
 
         // POST: Users/Create
         [HttpPost]

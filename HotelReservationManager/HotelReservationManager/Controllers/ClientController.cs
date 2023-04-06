@@ -11,9 +11,9 @@ namespace HotelReservationManager.Controllers
 {
     public class ClientController : Controller
     {
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _context.Clients.ToListAsync());
         }
 
         private readonly HotelDbContext _context;
@@ -26,7 +26,7 @@ namespace HotelReservationManager.Controllers
         // POST: Clients/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ClientId, First_Name, Last_Name, Phone, E_mail, Adult")] Clients clients)
+        public async Task<IActionResult> Create([Bind("First_Name, Last_Name, Phone, E_mail, Adult")] Clients clients)
         {
             if (ModelState.IsValid)
             {
