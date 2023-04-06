@@ -152,6 +152,9 @@ namespace HotelReservationManager.Migrations
                     b.Property<bool>("Is_active")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("Is_Ádministrator")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Last_name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

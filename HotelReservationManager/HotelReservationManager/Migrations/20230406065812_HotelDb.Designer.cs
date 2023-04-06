@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelReservationManager.Migrations
 {
     [DbContext(typeof(HotelDbContext))]
-    [Migration("20230405093032_HotelDB")]
-    partial class HotelDB
+    [Migration("20230406065812_HotelDb")]
+    partial class HotelDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -152,6 +152,9 @@ namespace HotelReservationManager.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("Is_active")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Is_Ádministrator")
                         .HasColumnType("bit");
 
                     b.Property<string>("Last_name")
