@@ -28,5 +28,26 @@ namespace HotelReservationManager.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        /*
+        [HttpPost]
+        public IActionResult Index(string username, string passcode)
+        {
+            var issuccess = _logger.AuthenticateUser(username, passcode);
+
+
+            if (issuccess.Result != null)
+            {
+                ViewBag.username = string.Format("Successfully logged-in", username);
+
+                TempData["username"] = "Ahmed";
+                return RedirectToAction("Index", "Layout");
+            }
+            else
+            {
+                ViewBag.username = string.Format("Login Failed ", username);
+                return View();
+            }
+        }
+        */
     }
 }
