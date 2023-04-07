@@ -72,7 +72,7 @@ namespace HotelReservationManager.Migrations
                     First_name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Second_name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Last_name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Is_Ádministrator = table.Column<bool>(type: "bit", nullable: false),
+                    Is_Administrator = table.Column<bool>(type: "bit", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     E_mail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Hire_date = table.Column<DateTime>(type: "datetime2", nullable: false),

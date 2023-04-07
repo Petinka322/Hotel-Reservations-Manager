@@ -1,0 +1,89 @@
+﻿@model HotelReservationManager.Models.Users
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Users</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="EGN" />
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="First_name" class="control-label"></label>
+                <input asp-for="First_name" class="form-control" />
+                <span asp-validation-for="First_name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Second_name" class="control-label"></label>
+                <input asp-for="Second_name" class="form-control" />
+                <span asp-validation-for="Second_name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Last_name" class="control-label"></label>
+                <input asp-for="Last_name" class="form-control" />
+                <span asp-validation-for="Last_name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Is_Administrator" class="control-label"></label>
+                <input type="checkbox" data-val="true" data-val-required="The IsChecked field is required." name="Is_Administrator" value="true">
+                <input name="Is_Administrator" type="hidden" value="false" />
+            </div>
+            <div class="form-group">
+                <label asp-for="EGN" class="control-label"></label>
+                <input asp-for="EGN" class="form-control" />
+                <span asp-validation-for="EGN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="E_mail" class="control-label"></label>
+                <input asp-for="E_mail" class="form-control" />
+                <span asp-validation-for="E_mail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hire_date" class="control-label"></label>
+                <input asp-for="Hire_date" class="form-control" />
+                <span asp-validation-for="Hire_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Is_active" class="control-label"></label>
+                <input type="checkbox" data-val="true" data-val-required="The IsChecked field is required." name="Is_active" value="true">
+                <input name="Is_active" type="hidden" value="false" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Release_date" class="control-label"></label>
+                <input asp-for="Release_date" class="form-control" />
+                <span asp-validation-for="Release_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

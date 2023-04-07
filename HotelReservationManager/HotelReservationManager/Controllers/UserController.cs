@@ -23,11 +23,16 @@ namespace HotelReservationManager.Controllers
         {
             return View(await _context.Users.ToListAsync());
         }
-       
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         // POST: Users/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Password,Username,First_name,Second_name,Last_name,EGN,Phone,E_mail,Hire_date,Is_active,Release_date")] Users user)
+        public async Task<IActionResult> Create([Bind("Password,Username,First_name,Second_name,Last_name,Is_Administrator,EGN,Phone,E_mail,Hire_date,Is_active,Release_date")] Users user)
         {
             if (ModelState.IsValid)
             {
@@ -38,8 +43,10 @@ namespace HotelReservationManager.Controllers
             return View(user);
         }
         // GET: Users/Delete
+        [HttpGet]
         public async Task<IActionResult> Delete(string? EGN)
         {
+            Console.WriteLine("Inside Delete action method.");
             if (EGN == null || _context.Users == null)
             {
                 return NotFound();
@@ -51,10 +58,9 @@ namespace HotelReservationManager.Controllers
             {
                 return NotFound();
             }
-
+            Console.WriteLine("Inside Delete action method.");
             return View(user);
         }
-
         // POST: Users/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -90,7 +96,7 @@ namespace HotelReservationManager.Controllers
 
             return View(user);
         }
-        // GET: Users/Edit
+        // GET: Users/Edit/5
         public async Task<IActionResult> Edit(string? egn)
         {
             if (egn == null || _context.Users == null)
@@ -141,96 +147,5 @@ namespace HotelReservationManager.Controllers
         {
             return _context.Users.Any(e => e.EGN == EGN);
         }
-        //public IActionResult Create()
-        //{
-        //    return View();
-        //}
-        //// GET: Users
-
-
-        //// POST: Users/Create
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> CreateClient([Bind("ClientId,First_name,Last_name,Phone,E_mail,Adult")] Clients client)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.Add(client);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(client);
-        //}
-        //// GET: Client/Delete
-        //public async Task<IActionResult> DeleteClient(int? ClientId)
-        //{
-        //    if (ClientId == null || _context.Clients == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var client = await _context.Clients
-        //        .FirstOrDefaultAsync(m => m.ClientId == ClientId);
-        //    if (client == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(client);
-        //}
-
-        //// POST: Clients/Delete
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> ClientDeleteConfirmed(int ClientId)
-        //{
-        //    if (_context.Clients == null)
-        //    {
-        //        return Problem("This client is missing.");
-        //    }
-        //    var client = await _context.Clients.FindAsync(ClientId);
-        //    if (client != null)
-        //    {
-        //        _context.Clients.Remove(client);
-        //    }
-
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
-        //public async Task<IActionResult> Reserve()
-        //{
-        //    var reservations = await _context.Reservations.ToListAsync();
-        //    var clients = await _context.Clients.ToListAsync();
-
-        //    ViewBag.Reservations = new SelectList(reservations, "ResId");
-        //    ViewBag.Clients = new SelectList(clients, "ClientId", "First_name");
-
-        //    return View();
-        //}
-
-        //// POST: Clients/Reserve
-        //[HttpPost]
-        //public async Task<IActionResult> Reserve(int ResId, int ClientId)
-        //{
-        //    var Client = await _context.Clients.FindAsync(ClientId);
-        //    var @reservation = await _context.Reservations.FindAsync(ResId);
-
-        //    if (Client == null || @reservation == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    if (!@reservation.Clients.Contains(Client))
-        //    {
-        //        @reservation.Clients.Add(Client);
-        //    }
-
-        //    return RedirectToAction(nameof(Index));
-        //}
-
-        //private bool UserExists(int ClientId)
-        //{
-        //    return _context.Clients.Any(e => e.ClientId == ClientId);
-        //}
     }
 }
