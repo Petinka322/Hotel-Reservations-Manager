@@ -114,7 +114,7 @@ namespace HotelReservationManager.Controllers
             return View(reservation);
         }
         // GET: Reservation/Details/
-        public async Task<IActionResult> DetailsReservation(int? resId)
+        public async Task<IActionResult> Details(int? resId)
         {
             if (resId == null || _context.Reservations == null)
             {

@@ -26,7 +26,7 @@ namespace HotelReservationManager.Controllers
         // POST: Clients/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("First_Name, Last_Name, Phone, E_mail, Adult")] Clients clients)
+        public async Task<IActionResult> Create([Bind("ClientId, First_Name, Last_Name, Phone, E_mail, Adult")] Clients clients)
         {
             if (ModelState.IsValid)
             {
@@ -49,14 +49,14 @@ namespace HotelReservationManager.Controllers
                 return NotFound();
             }
 
-            var client = await _context.Clients
+            var clients = await _context.Clients
                 .FirstOrDefaultAsync(m => m.ClientId == clientId);
-            if (client == null)
+            if (clients == null)
             {
                 return NotFound();
             }
 
-            return View(client);
+            return View(clients);
         }
         // POST: Client/Delete
         [HttpPost, ActionName("Delete")]
@@ -67,10 +67,10 @@ namespace HotelReservationManager.Controllers
             {
                 return Problem("This client is missing.");
             }
-            var clinet = await _context.Clients.FindAsync(clientId);
-            if (clinet != null)
+            var clients = await _context.Clients.FindAsync(clientId);
+            if (clients != null)
             {
-                _context.Clients.Remove(clinet);
+                _context.Clients.Remove(clients);
             }
 
             await _context.SaveChangesAsync();
@@ -84,19 +84,19 @@ namespace HotelReservationManager.Controllers
                 return NotFound();
             }
 
-            var client = await _context.Clients.FindAsync(clientID);
-            if (client == null)
+            var clients = await _context.Clients.FindAsync(clientID);
+            if (clients == null)
             {
                 return NotFound();
             }
-            return View(client);
+            return View(clients);
         }
-        // POST: Client/Edit
+        // POST: Client/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int clientId, [Bind("ClientId,First_Name,Last_Name,Phone,E_mail, Adult,Reservations")] Clients client)
+        public async Task<IActionResult> Edit(int clientId, [Bind("ClientId, First_Name, Last_Name, Phone, E_mail, Adult,Reservations")] Clients clients)
         {
-            if (clientId != client.ClientId)
+            if (clientId != clients.ClientId)
             {
                 return NotFound();
             }
@@ -105,12 +105,12 @@ namespace HotelReservationManager.Controllers
             {
                 try
                 {
-                    _context.Update(client);
+                    _context.Update(clients);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClientExists(client.ClientId))
+                    if (!ClientExists(clients.ClientId))
                     {
                         return NotFound();
                     }
@@ -121,7 +121,7 @@ namespace HotelReservationManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(client);
+            return View(clients);
         }
         private bool ReservationExists(int resId)
         {
@@ -130,6 +130,23 @@ namespace HotelReservationManager.Controllers
         private bool ClientExists(int ClientId)
         {
             return _context.Clients.Any(e => e.ClientId == ClientId);
+        }
+
+        public async Task<IActionResult> Details(int? ClientId)
+        {
+            if (ClientId == null || _context.Clients == null)
+            {
+                return NotFound();
+            }
+
+            var clients = await _context.Clients
+                .FirstOrDefaultAsync(m => m.ClientId == ClientId);
+            if (clients == null)
+            {
+                return NotFound();
+            }
+
+            return View(clients);
         }
 
         // GET: Clients/Associate
