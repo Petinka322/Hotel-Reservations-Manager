@@ -28,5 +28,41 @@ namespace HotelReservationManager.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(Users objUser)
+        {
+            if (ModelState.IsValid)
+            {
+                using (HotelDbContext db = new HotelDbContext())
+                {
+                    var obj = db.Users.Where(a => a.Username.Equals(objUser.Username) && a.Password.Equals(objUser.Password)).FirstOrDefault();
+                    if (obj != null)
+                    {
+                        Session["EGN"] = obj.EGN.ToString();
+                        Session["Username"] = obj.Username.ToString();
+                        return RedirectToAction("UserDashBoard");
+                    }
+                }
+            }
+            return View(objUser);
+        }
+
+        public ActionResult UserDashBoard()
+        {
+            if (Session["UserID"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
     }
 }

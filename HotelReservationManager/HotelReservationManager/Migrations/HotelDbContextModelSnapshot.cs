@@ -149,6 +149,9 @@ namespace HotelReservationManager.Migrations
                     b.Property<DateTime>("Hire_date")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("Is_Administrator")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("Is_active")
                         .HasColumnType("bit");
 

@@ -6,9 +6,9 @@ namespace HotelReservationManager.Controllers
 {
     public class ReservationController : Controller
     {
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _context.Reservations.ToListAsync());
         }
 
         private readonly HotelDbContext _context;
@@ -30,11 +30,6 @@ namespace HotelReservationManager.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(reservation);
-        }
-        // GET: Reservation/Create
-        public async Task<IActionResult> Create()
-        {
-            return View();
         }
         // GET: Reservation/Delete
         public async Task<IActionResult> Delete(int? resId)
@@ -119,7 +114,7 @@ namespace HotelReservationManager.Controllers
             return View(reservation);
         }
         // GET: Reservation/Details/
-        public async Task<IActionResult> DetailsReservation(int? resId)
+        public async Task<IActionResult> Details(int? resId)
         {
             if (resId == null || _context.Reservations == null)
             {

@@ -1,0 +1,102 @@
+﻿@model IEnumerable<HotelReservationManager.Models.Users>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New User</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Username)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Password)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.First_name)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Second_name)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Last_name)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Is_Administrator)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.EGN)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Phone)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.E_mail)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Hire_date)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Is_active)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Release_date)
+            </td>
+            <th></th>
+        </tr>
+    </thead>
+<tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.First_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Second_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Last_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Is_Administrator)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EGN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.E_mail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hire_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Is_active)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Release_date)
+                </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.EGN">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.EGN">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.EGN">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
