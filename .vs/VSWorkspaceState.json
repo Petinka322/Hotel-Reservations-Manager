@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\HotelReservationManager",
+    "\\HotelReservationManager\\HotelReservationManager"
   ],
-  "SelectedNode": "\\HotelReservationManager.sln",
+  "SelectedNode": "\\HotelReservationManager\\HotelReservationManager\\appsettings.json",
   "PreviewInSolutionExplorer": false
 }

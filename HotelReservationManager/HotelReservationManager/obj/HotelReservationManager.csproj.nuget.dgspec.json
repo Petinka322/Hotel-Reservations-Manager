@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ПламенГеоргиев04\\Source\\Repos\\Petinka322\\Hotel-Reservations-Manager\\HotelReservationManager\\HotelReservationManager\\HotelReservationManager.csproj": {}
+    "C:\\Users\\Plamen\\Source\\Repos\\Petinka322\\Hotel-Reservations-Manager\\HotelReservationManager\\HotelReservationManager\\HotelReservationManager.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ПламенГеоргиев04\\Source\\Repos\\Petinka322\\Hotel-Reservations-Manager\\HotelReservationManager\\HotelReservationManager\\HotelReservationManager.csproj": {
+    "C:\\Users\\Plamen\\Source\\Repos\\Petinka322\\Hotel-Reservations-Manager\\HotelReservationManager\\HotelReservationManager\\HotelReservationManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ПламенГеоргиев04\\Source\\Repos\\Petinka322\\Hotel-Reservations-Manager\\HotelReservationManager\\HotelReservationManager\\HotelReservationManager.csproj",
+        "projectUniqueName": "C:\\Users\\Plamen\\Source\\Repos\\Petinka322\\Hotel-Reservations-Manager\\HotelReservationManager\\HotelReservationManager\\HotelReservationManager.csproj",
         "projectName": "HotelReservationManager",
-        "projectPath": "C:\\Users\\ПламенГеоргиев04\\Source\\Repos\\Petinka322\\Hotel-Reservations-Manager\\HotelReservationManager\\HotelReservationManager\\HotelReservationManager.csproj",
-        "packagesPath": "C:\\Users\\ПламенГеоргиев04\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ПламенГеоргиев04\\Source\\Repos\\Petinka322\\Hotel-Reservations-Manager\\HotelReservationManager\\HotelReservationManager\\obj\\",
+        "projectPath": "C:\\Users\\Plamen\\Source\\Repos\\Petinka322\\Hotel-Reservations-Manager\\HotelReservationManager\\HotelReservationManager\\HotelReservationManager.csproj",
+        "packagesPath": "C:\\Users\\Plamen\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Plamen\\Source\\Repos\\Petinka322\\Hotel-Reservations-Manager\\HotelReservationManager\\HotelReservationManager\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ПламенГеоргиев04\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Plamen\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -43,17 +43,56 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Proxies": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.13, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }
