@@ -600,3 +600,14 @@ C:\Users\User\Desktop\Hotel-Reservations-Manager\Hotel-Reservations-Manager\Hote
 C:\Users\User\Desktop\Hotel-Reservations-Manager\Hotel-Reservations-Manager\HotelReservationManager\HotelReservationManager\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\User\Desktop\Hotel-Reservations-Manager\Hotel-Reservations-Manager\HotelReservationManager\HotelReservationManager\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\User\Desktop\Hotel-Reservations-Manager\Hotel-Reservations-Manager\HotelReservationManager\HotelReservationManager\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\User\Desktop\Hotel-Reservations-Manager\HotelReservationManager\HotelReservationManager\obj\Debug\net6.0\HotelReservationManager.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\Hotel-Reservations-Manager\HotelReservationManager\HotelReservationManager\obj\Debug\net6.0\HotelReservationManager.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\Hotel-Reservations-Manager\HotelReservationManager\HotelReservationManager\obj\Debug\net6.0\HotelReservationManager.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\Hotel-Reservations-Manager\HotelReservationManager\HotelReservationManager\obj\Debug\net6.0\HotelReservationManager.AssemblyInfo.cs
+C:\Users\User\Desktop\Hotel-Reservations-Manager\HotelReservationManager\HotelReservationManager\obj\Debug\net6.0\HotelReservationManager.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Hotel-Reservations-Manager\HotelReservationManager\HotelReservationManager\obj\Debug\net6.0\HotelReservationManager.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\User\Desktop\Hotel-Reservations-Manager\HotelReservationManager\HotelReservationManager\obj\Debug\net6.0\HotelReservationManager.RazorAssemblyInfo.cache
+C:\Users\User\Desktop\Hotel-Reservations-Manager\HotelReservationManager\HotelReservationManager\obj\Debug\net6.0\HotelReservationManager.RazorAssemblyInfo.cs
+C:\Users\User\Desktop\Hotel-Reservations-Manager\HotelReservationManager\HotelReservationManager\obj\Debug\net6.0\HotelReservationManager.dll
+C:\Users\User\Desktop\Hotel-Reservations-Manager\HotelReservationManager\HotelReservationManager\obj\Debug\net6.0\ref\HotelReservationManager.dll
+C:\Users\User\Desktop\Hotel-Reservations-Manager\HotelReservationManager\HotelReservationManager\obj\Debug\net6.0\HotelReservationManager.pdb

@@ -28,26 +28,41 @@ namespace HotelReservationManager.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        /*
-        [HttpPost]
-        public IActionResult Index(string username, string passcode)
+        public ActionResult Login()
         {
-            var issuccess = _logger.AuthenticateUser(username, passcode);
+            return View();
+        }
 
-
-            if (issuccess.Result != null)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(Users objUser)
+        {
+            if (ModelState.IsValid)
             {
-                ViewBag.username = string.Format("Successfully logged-in", username);
+                using (HotelDbContext db = new HotelDbContext())
+                {
+                    var obj = db.Users.Where(a => a.Username.Equals(objUser.Username) && a.Password.Equals(objUser.Password)).FirstOrDefault();
+                    if (obj != null)
+                    {
+                        Session["EGN"] = obj.EGN.ToString();
+                        Session["Username"] = obj.Username.ToString();
+                        return RedirectToAction("UserDashBoard");
+                    }
+                }
+            }
+            return View(objUser);
+        }
 
-                TempData["username"] = "Ahmed";
-                return RedirectToAction("Index", "Layout");
+        public ActionResult UserDashBoard()
+        {
+            if (Session["UserID"] != null)
+            {
+                return View();
             }
             else
             {
-                ViewBag.username = string.Format("Login Failed ", username);
-                return View();
+                return RedirectToAction("Login");
             }
         }
-        */
     }
 }
