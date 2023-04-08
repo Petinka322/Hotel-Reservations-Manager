@@ -25,7 +25,7 @@
                 @Html.ActionLink("RoomsId", "Index", new { sortOrder = ViewBag.RoomsIdSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th>
-                @Html.ActionLink("Username", "Index", new { sortOrder = ViewBag.UsenameSortParm, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Username", "Index", new { sortOrder = ViewBag.UsernameSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th>
                 Arrival_date
@@ -52,7 +52,7 @@
                 @Html.DisplayFor(modelItem => item.RoomsId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Usename)
+                @Html.DisplayFor(modelItem => item.Username)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Arrival_date)

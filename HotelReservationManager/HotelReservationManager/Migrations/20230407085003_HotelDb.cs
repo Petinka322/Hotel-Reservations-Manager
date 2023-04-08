@@ -33,7 +33,7 @@ namespace HotelReservationManager.Migrations
                     ResId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RoomsId = table.Column<int>(type: "int", nullable: false),
-                    Usename = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Arrival_date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Departure_date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Breakfast = table.Column<bool>(type: "bit", nullable: false),

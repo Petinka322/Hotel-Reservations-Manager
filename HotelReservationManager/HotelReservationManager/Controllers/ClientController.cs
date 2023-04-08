@@ -211,7 +211,7 @@ namespace HotelReservationManager.Controllers
             var reservations = await _context.Reservations.ToListAsync();
             var clients = await _context.Clients.ToListAsync();
 
-            ViewBag.Reservations = new SelectList(reservations, "ResId", "Usename");
+            ViewBag.Reservations = new SelectList(reservations, "ResId", "Username");
             ViewBag.Clients = new SelectList(clients, "ClientId", "First_Name");
 
             return View();

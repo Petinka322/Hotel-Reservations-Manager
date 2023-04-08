@@ -18,7 +18,7 @@ namespace HotelReservationManager.Controllers
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.SortOrder = sortOrder;
-            ViewBag.UsenameSortParm = String.IsNullOrEmpty(sortOrder) ? "Usename_desc" : "";
+            ViewBag.UsernameSortParm = String.IsNullOrEmpty(sortOrder) ? "Username_desc" : "";
             ViewBag.RoomsIdSortParm = String.IsNullOrEmpty(sortOrder) ? "RoomsId_desc" : "";
             if (searchString != null)
             {
@@ -35,18 +35,18 @@ namespace HotelReservationManager.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                reservations = reservations.Where(s => s.Usename.Contains(searchString));
+                reservations = reservations.Where(s => s.Username.Contains(searchString));
             }
             switch (sortOrder)
             {
-                case "Usename_desc":
-                    reservations = reservations.OrderByDescending(s => s.Usename);
+                case "Username_desc":
+                    reservations = reservations.OrderByDescending(s => s.Username);
                     break;
                 case "RoomsId_desc":
                     reservations = reservations.OrderByDescending(s => s.RoomsId);
                     break;
-                case "Usename":
-                    reservations = reservations.OrderBy(s => s.Usename);
+                case "Username":
+                    reservations = reservations.OrderBy(s => s.Username);
                     break;
                 default:
                     reservations = reservations.OrderBy(s => s.RoomsId);
@@ -70,21 +70,36 @@ namespace HotelReservationManager.Controllers
         {
             var room = await _context.Rooms.ToListAsync();
             ViewBag.Rooms = new SelectList(room, "RoomsId", "RoomsId");
+            var user = await _context.Users.ToListAsync();
+            ViewBag.Users = new SelectList(user, "Username", "Username");
+
             return View();
         }
         // POST: Reservation/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ResId,RoomsId,Usename, Arrval_Date, Departure_Date, Breakfast, All_Inclusive, Price")] Reservation reservation)
+        public async Task<IActionResult> Create([Bind("ResId,RoomsId,Username, Arrval_Date, Departure_Date, Breakfast, All_Inclusive, Price")] Reservation reservation)
         {
             var room = _context.Rooms.Where(m => m.RoomsId == reservation.RoomsId).FirstOrDefault();
             if (reservation.RoomsId <= 0)
             {
                 return Problem("The room number cannot be below or equal to 0!");
             }
+            if (reservation.RoomsId != room.RoomsId)
+            {
+                return Problem("The room number doesn't exist!");
+            }
             if (ModelState.IsValid)
-            {  
+            {
                 reservation.Price = (room.Price_Adult) * reservation.Clients.Where(m => m.Adult == true).Count() + (room.Price_Child) * reservation.Clients.Where(m => m.Adult == false).Count();
+                if (reservation.All_inclusive == true)
+                {
+                    reservation.Price += int.Parse((reservation.Arrival_date - reservation.Departure_date).ToString()) * 25;
+                }
+                if (reservation.Breakfast == true)
+                {
+                    reservation.Price += int.Parse((reservation.Arrival_date - reservation.Departure_date).ToString()) * 15;
+                }
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -195,6 +210,37 @@ namespace HotelReservationManager.Controllers
         private bool Exists(int id)
         {
             return _context.Reservations.Any(e => e.ResId == id);
+        }
+        // GET: Clients/Associate
+        public async Task<IActionResult> Associate()
+        {
+            var reservations = await _context.Reservations.ToListAsync();
+            var clients = await _context.Clients.ToListAsync();
+
+            ViewBag.Reservations = new SelectList(reservations, "ResId", "Username");
+            ViewBag.Clients = new SelectList(clients, "ClientId", "First_Name");
+
+            return View();
+        }
+
+        // POST: Clients/Associate
+        [HttpPost]
+        public async Task<IActionResult> Associate(int resId, int clientId)
+        {
+            var client = await _context.Clients.FindAsync(clientId);
+            var reservation = await _context.Reservations.FindAsync(resId);
+
+            if (client == null || reservation == null)
+            {
+                return NotFound();
+            }
+
+            if (!reservation.Clients.Contains(client))
+            {
+                reservation.Clients.Add(client);
+            }
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

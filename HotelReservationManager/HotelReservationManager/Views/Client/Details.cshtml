@@ -45,7 +45,7 @@
     @foreach (var reservationItem in Model.Reservations)
     {
         <a asp-controller="Reservations" asp-action="Details" asp-route-id=" @reservationItem.ResId">@reservationItem.RoomsId</a>
-        <a asp-controller="Reservations" asp-action="Details" asp-route-id=" @reservationItem.ResId">@reservationItem.Usename</a>
+        <a asp-controller="Reservations" asp-action="Details" asp-route-id=" @reservationItem.ResId">@reservationItem.Username</a>
         <a asp-controller="Reservations" asp-action="Details" asp-route-id=" @reservationItem.ResId">@reservationItem.Arrival_date</a>
         <a asp-controller="Reservations" asp-action="Details" asp-route-id=" @reservationItem.ResId">@reservationItem.Departure_date</a>
         <a asp-controller="Reservations" asp-action="Details" asp-route-id=" @reservationItem.ResId">@reservationItem.Breakfast</a>

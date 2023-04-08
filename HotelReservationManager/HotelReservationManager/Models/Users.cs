@@ -15,5 +15,10 @@
         public DateTime Hire_date { get; set; }
         public bool Is_active { get; set; }
         public DateTime Release_date { get; set; }
+        public virtual HashSet<Reservation> Reservations { get; set; }
+        public Users()
+        {
+            Reservations = new HashSet<Reservation>();
+        }
     }
 }

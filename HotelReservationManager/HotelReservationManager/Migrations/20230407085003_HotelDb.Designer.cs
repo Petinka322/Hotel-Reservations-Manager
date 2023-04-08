@@ -97,7 +97,7 @@ namespace HotelReservationManager.Migrations
                     b.Property<int>("RoomsId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Usename")
+                    b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

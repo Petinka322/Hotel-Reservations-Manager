@@ -5,12 +5,12 @@
 	<div class="col-md-4">
 		<form method="post">
 			<div class="form-group">
-				<label for="eventId">Reservation:</label>
-				@Html.DropDownListFor(m => m.ResId, ViewBag.Reservations as SelectList, new { @class = "form-control" })
-			</div>
-			<div class="form-group">
 				<label for="attendeeId">Client:</label>
 				@Html.DropDownListFor(m => m.ClientId, ViewBag.Clients as SelectList, new { @class = "form-control" })
+			</div>
+			<div class="form-group">
+				<label for="eventId">Reservation:</label>
+				@Html.DropDownListFor(m => m.ResId, ViewBag.Reservations as SelectList, new { @class = "form-control" })
 			</div>
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary">Associate</button>

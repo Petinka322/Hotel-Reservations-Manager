@@ -17,9 +17,8 @@
                 @Html.DropDownListFor(m => m.RoomsId, ViewBag.Rooms as SelectList, new { @class = "form-control" })
             </div>
             <div class="form-group">
-                <label asp-for="Usename" class="control-label"></label>
-                <input asp-for="Usename" class="form-control" />
-                <span asp-validation-for="Usename" class="text-danger"></span>
+                <label for="Username">Username:</label>
+                @Html.DropDownListFor(m => m.Username, ViewBag.Users as SelectList, new { @class = "form-control" })
             </div>
             <div class="form-group">
                 <label asp-for="Arrival_date" class="control-label"></label>
