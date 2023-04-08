@@ -77,12 +77,14 @@ namespace HotelReservationManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ResId,RoomsId,Usename, Arrval_Date, Departure_Date, Breakfast, All_Inclusive, Price")] Reservation reservation)
         {
+            var room = _context.Rooms.Where(m => m.RoomsId == reservation.RoomsId).FirstOrDefault();
             if (reservation.RoomsId <= 0)
             {
                 return Problem("The room number cannot be below or equal to 0!");
             }
             if (ModelState.IsValid)
-            {
+            {  
+                reservation.Price = (room.Price_Adult) * reservation.Clients.Where(m => m.Adult == true).Count() + (room.Price_Child) * reservation.Clients.Where(m => m.Adult == false).Count();
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

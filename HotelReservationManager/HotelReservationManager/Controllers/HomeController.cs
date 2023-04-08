@@ -1,20 +1,49 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using HotelReservationManager.Models;
+using HotelReservationManager.Repository;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace HotelReservationManager.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogin _loginUser;
+        private readonly HotelDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(HotelDbContext context, ILogin logger)
         {
-            _logger = logger;
+            _context = context;
+            _loginUser = logger;
         }
 
         public IActionResult Index()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Index(string username, string password)
+        {
+            var status = _context.Users.Where(m => m.Username == username && m.Password == password).FirstOrDefault();
+            if (status != null)
+            {
+                if (status.Is_Administrator == true && status.Is_active == true)
+                {
+                    ViewBag.Message = "Success full login";
+                    return View("Manager");
+                }
+                else if(status.Is_active == true)
+                {
+                    ViewBag.Message = "Success full login";
+                    return View("User");
+                }
+            }
+            else
+            {
+                ViewBag.Message = "Invalid login detail.";
+            }
             return View();
         }
 
@@ -28,61 +57,5 @@ namespace HotelReservationManager.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        public ActionResult Login()
-        {
-            return View();
-        }
-        /*
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Login(Users objUser)
-        {
-            if (ModelState.IsValid)
-            {
-                using (HotelDbContext db = new HotelDbContext())
-                {
-                    var obj = db.Users.Where(a => a.Username.Equals(objUser.Username) && a.Password.Equals(objUser.Password)).FirstOrDefault();
-                    if (obj != null)
-                    {
-                        Session["EGN"] = obj.EGN.ToString();
-                        Session["Username"] = obj.Username.ToString();
-                        return RedirectToAction("UserDashBoard");
-                    }
-                }
-            }
-            return View(objUser);
-        }
-
-        public ActionResult UserDashBoard()
-        {
-            if (Session["UserID"] != null)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login");
-            }
-        }
-        [HttpPost]
-        public IActionResult Index(string username, string passcode)
-        {
-            var issuccess = _logger.AuthenticateUser(username, passcode);
-
-
-            if (issuccess.Result != null)
-            {
-                ViewBag.username = string.Format("Successfully logged-in", username);
-
-                TempData["username"] = "Ahmed";
-                return RedirectToAction("Index", "Layout");
-            }
-            else
-            {
-                ViewBag.username = string.Format("Login Failed ", username);
-                return View();
-            }
-        }
-        */
     }
 }

@@ -1,5 +1,7 @@
 using HotelReservationManager.Models;
+using HotelReservationManager.Repository;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 namespace HotelReservationManager
 {
@@ -11,9 +13,10 @@ namespace HotelReservationManager
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddScoped<ILogin, AuthenticateLogin>();
             builder.Services.AddDbContext<HotelDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
             var app = builder.Build();
 
@@ -39,4 +42,5 @@ namespace HotelReservationManager
             app.Run();
         }
     }
+
 }

@@ -16,3 +16,9 @@ html {
 body {
   margin-bottom: 60px;
 }
+footer {
+    position: absolute;
+    bottom: 10px;
+    padding-left: 20px;
+    width: 100%;
+}

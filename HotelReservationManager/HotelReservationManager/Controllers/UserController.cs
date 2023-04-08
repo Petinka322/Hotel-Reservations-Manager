@@ -9,6 +9,7 @@ using HotelReservationManager.Models;
 using X.PagedList;
 using HotelReservationManager.Migrations;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Text.RegularExpressions;
 
 
 namespace HotelReservationManager.Controllers
@@ -84,6 +85,26 @@ namespace HotelReservationManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Password,Username,First_name,Second_name,Last_name,Is_Administrator,EGN,Phone,E_mail,Hire_date,Is_active,Release_date")] Users user)
         {
+            Regex regex = new Regex(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-
+         9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
+RegexOptions.CultureInvariant | RegexOptions.Singleline);
+
+            if (user.EGN.Length != 10)
+            {
+                return Problem("EGN cannot be longer or shorter than 10 digits!");
+            }
+            if (user.Phone.Length !=10)
+            {
+                return Problem("Phone number cannot be longer or shorter than 10 digits!");
+            }
+            if (regex.IsMatch(user.E_mail) == false)
+            {
+                return Problem("This is not an email!");
+            }
+            if (user.Hire_date <= user.Release_date)
+            {
+                return Problem("The date of hire cannot be the same or later than the date of release!");
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(user);

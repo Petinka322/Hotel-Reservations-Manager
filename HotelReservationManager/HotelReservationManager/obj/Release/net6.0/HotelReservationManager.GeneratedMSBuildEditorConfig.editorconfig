@@ -9,11 +9,11 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = HotelReservationManager
 build_property.RootNamespace = HotelReservationManager
-build_property.ProjectDir = C:\Users\Plamen\source\repos\Petinka322\Hotel-Reservations-Manager\HotelReservationManager\HotelReservationManager\
+build_property.ProjectDir = C:\Users\Plamen\Source\Repos\Petinka322\Hotel-Reservations-Manager\HotelReservationManager\HotelReservationManager\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Plamen\source\repos\Petinka322\Hotel-Reservations-Manager\HotelReservationManager\HotelReservationManager
+build_property.MSBuildProjectDirectory = C:\Users\Plamen\Source\Repos\Petinka322\Hotel-Reservations-Manager\HotelReservationManager\HotelReservationManager
 build_property._RazorSourceGeneratorDebug = 
 
 [C:/Users/Plamen/source/repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Client/Associate.cshtml]
@@ -48,8 +48,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Plamen/source/repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Home/Manager.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNYW5hZ2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Plamen/source/repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Plamen/source/repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Home/User.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxVc2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Plamen/source/repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Reservation/Associate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cQXNzb2NpYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Plamen/source/repos/Petinka322/Hotel-Reservations-Manager/HotelReservationManager/HotelReservationManager/Views/Reservation/Create.cshtml]

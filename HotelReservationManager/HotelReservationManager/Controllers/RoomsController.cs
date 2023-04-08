@@ -84,6 +84,10 @@ namespace HotelReservationManager.Controllers
             {
                 return Problem("The Price for an Adult cannot be larger than the Price for a Child!");
             }
+            if (rooms.Price_Adult <=0 || rooms.Price_Child < 0)
+            {
+                return Problem("The price for an adult or child cannot be lower than 0!");
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(rooms);

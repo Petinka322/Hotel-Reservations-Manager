@@ -9,7 +9,7 @@
 <h1>Reservations</h1>
 
 <p>
-    <a asp-action="Create">Create New Reservation</a>
+    <a asp-action="Create">Create New Reservation</a> | <a asp-action="Associate">Associate to a Reservation</a>
 </p>
 @using (Html.BeginForm("Index", "Reservation", FormMethod.Get))
 {
@@ -25,7 +25,7 @@
                 @Html.ActionLink("RoomsId", "Index", new { sortOrder = ViewBag.RoomsIdSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th>
-                @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.UsenameSortParm, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Username", "Index", new { sortOrder = ViewBag.UsenameSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th>
                 Arrival_date

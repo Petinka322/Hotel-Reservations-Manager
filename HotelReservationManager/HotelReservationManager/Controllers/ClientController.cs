@@ -9,6 +9,7 @@ using HotelReservationManager.Models;
 using X.PagedList;
 using HotelReservationManager.Migrations;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Text.RegularExpressions;
 
 namespace HotelReservationManager.Controllers
 {
@@ -71,6 +72,18 @@ namespace HotelReservationManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ClientId, First_Name, Last_Name, Phone, E_mail, Adult")] Clients clients)
         {
+            Regex regex = new Regex(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-
+         9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
+         RegexOptions.CultureInvariant | RegexOptions.Singleline);
+
+            if (clients.Phone.Length != 10)
+            {
+                return Problem("Phone number cannot be longer or shorter than 10 digits!");
+            }
+            if (regex.IsMatch(clients.E_mail) == false)
+            {
+                return Problem("This is not an email!");
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(clients);
@@ -206,9 +219,9 @@ namespace HotelReservationManager.Controllers
 
         // POST: Clients/Associate
         [HttpPost]
-        public async Task<IActionResult> Associate(int resId, int id)
+        public async Task<IActionResult> Associate(int resId, int clientId)
         {
-            var client = await _context.Clients.FindAsync(id);
+            var client = await _context.Clients.FindAsync(clientId);
             var reservation = await _context.Reservations.FindAsync(resId);
 
             if (client == null || reservation == null)
