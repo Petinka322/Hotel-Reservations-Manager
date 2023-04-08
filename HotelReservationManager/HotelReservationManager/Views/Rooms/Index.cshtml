@@ -1,31 +1,40 @@
-﻿@model IEnumerable<HotelReservationManager.Models.Rooms>
+﻿@model X.PagedList.IPagedList<HotelReservationManager.Models.Rooms>
+@using PagedList.Core.Mvc;
+@using X.PagedList.Mvc.Core;
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Rooms</h1>
 
 <p>
     <a asp-action="Create">Create New Rooms</a>
 </p>
+@using (Html.BeginForm("Index", "Rooms", FormMethod.Get))
+{
+    <p>
+        Find by RoomType: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
             <td>
-                @Html.DisplayNameFor(model => model.RoomsCapacity)
+                @Html.ActionLink("RoomsType", "Index", new { sortOrder = ViewBag.First_NameSortParm, currentFilter = ViewBag.CurrentFilter })
             </td>
             <td>
-                @Html.DisplayNameFor(model => model.RoomsType)
+                RoomsType
             </td>
             <td>
-                @Html.DisplayNameFor(model => model.Is_Available)
+                Is_Available
             </td>
             <td>
-                @Html.DisplayNameFor(model => model.Price_Adult)
+                Price_Adult
             </td>
                 <td>
-                @Html.DisplayNameFor(model => model.Price_Child)
+                Price_Child
             </td>
             <th></th>
         </tr>
@@ -57,4 +66,7 @@
 }
     </tbody>
 </table>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
+@Html.PagedListPager(Model, page => Url.Action("Index", 
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

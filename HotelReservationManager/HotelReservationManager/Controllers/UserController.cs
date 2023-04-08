@@ -6,22 +6,72 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HotelReservationManager.Models;
+using X.PagedList;
+using HotelReservationManager.Migrations;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
 
 namespace HotelReservationManager.Controllers
 {
     public class UserController:Controller
     {
         private readonly HotelDbContext _context;
-
         public UserController(HotelDbContext context)
         {
             _context = context;
         }
-      
-        //Get: Users
-        public async Task<IActionResult> Index()
+
+        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(await _context.Users.ToListAsync());
+            ViewBag.SortOrder = sortOrder;
+            ViewBag.First_NameSortParm = String.IsNullOrEmpty(sortOrder) ? "first_name_desc" : "";
+            ViewBag.Second_NameSortParm = String.IsNullOrEmpty(sortOrder) ? "second_name_desc" : "";
+            ViewBag.Last_NameSortParm = String.IsNullOrEmpty(sortOrder) ? "last_name_desc" : "";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+
+            var users = from s in _context.Users
+                          select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                users = users.Where(s => s.First_name.Contains(searchString)
+                                       || s.Second_name.Contains(searchString)
+                                       || s.Last_name.Contains(searchString));  
+            }
+            switch (sortOrder)
+            {
+                case "first_name_desc":
+                    users = users.OrderByDescending(s => s.First_name);
+                    break;
+                case "second_name":
+                    users = users.OrderBy(s => s.Second_name);
+                    break;
+                case "second_name_desc":
+                    users = users.OrderByDescending(s => s.Second_name);
+                    break;
+                case "last_name":
+                    users = users.OrderBy(s => s.Last_name);
+                    break;
+                case "last_name_desc":
+                    users = users.OrderByDescending(s => s.Last_name);
+                    break;
+                default:
+                    users = users.OrderBy(s => s.First_name);
+                    break;
+            }
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(users.ToPagedList(pageNumber, pageSize));
         }
 
         public IActionResult Create()

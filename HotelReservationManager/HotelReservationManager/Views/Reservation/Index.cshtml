@@ -1,4 +1,6 @@
-﻿@model IEnumerable<HotelReservationManager.Models.Reservation>
+﻿@model X.PagedList.IPagedList<HotelReservationManager.Models.Reservation>
+@using PagedList.Core.Mvc;
+@using X.PagedList.Mvc.Core;
 
 @{
     ViewData["Title"] = "Index";
@@ -9,34 +11,40 @@
 <p>
     <a asp-action="Create">Create New Reservation</a>
 </p>
+@using (Html.BeginForm("Index", "Reservation", FormMethod.Get))
+{
+    <p>
+        Find by Usename: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.RoomsId)
+                RoomsId
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Usename)
+                @Html.ActionLink("Usename", "Index", new { sortOrder = ViewBag.First_NameSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Arrival_date)
+                Arrival_date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Departure_date)
+                Departure_date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Breakfast)
+                Breakfast
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.All_inclusive)
+                All_inclusive
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                Price
             </th>
             <th></th>
         </tr>
     </thead>
-@*
     <tbody>
 @foreach (var item in Model) {
         <tr>
@@ -70,4 +78,7 @@
 }
     </tbody>
 </table>
-*@
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

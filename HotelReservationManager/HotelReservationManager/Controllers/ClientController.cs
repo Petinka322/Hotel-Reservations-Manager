@@ -6,14 +6,57 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HotelReservationManager.Models;
+using X.PagedList;
+using HotelReservationManager.Migrations;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HotelReservationManager.Controllers
 {
     public class ClientController : Controller
     {
-        public async Task<IActionResult> Index()
+        public ViewResult Index(string sortOrder,string currentFilter, string searchString, int? page)
         {
-            return View(await _context.Clients.ToListAsync());
+            ViewBag.SortOrder = sortOrder;
+            ViewBag.First_NameSortParm = String.IsNullOrEmpty(sortOrder) ? "first_name_desc" : "";
+            ViewBag.Last_NameSortParm = String.IsNullOrEmpty(sortOrder) ? "last_name_desc" : "";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+
+            var clients = from s in _context.Clients
+                           select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                clients = clients.Where(s => s.First_Name.Contains(searchString)
+                                       || s.Last_Name.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "first_name_desc":
+                    clients = clients.OrderByDescending(s => s.First_Name);
+                    break;
+                case "last_name":
+                    clients = clients.OrderBy(s => s.Last_Name);
+                    break;
+                case "last_name_desc":
+                    clients = clients.OrderByDescending(s => s.Last_Name);
+                    break;
+                default:
+                    clients = clients.OrderBy(s => s.First_Name);
+                    break;
+            }
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(clients.ToPagedList(pageNumber, pageSize));
         }
 
         private readonly HotelDbContext _context;

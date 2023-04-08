@@ -1,31 +1,40 @@
-﻿@model IEnumerable<HotelReservationManager.Models.Clients>
+﻿@model X.PagedList.IPagedList<HotelReservationManager.Models.Clients>
+@using PagedList.Core.Mvc;
+@using X.PagedList.Mvc.Core;
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Clients</h1>
 
 <p>
     <a asp-action="Create">Create New Client</a> | <a asp-action="Associate">Associate to a Reservation</a>
 </p>
+@using (Html.BeginForm("Index", "Client", FormMethod.Get))
+{
+    <p>
+        Find by First name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
             <td>
-                @Html.DisplayNameFor(model => model.First_Name)
+                @Html.ActionLink("First_Name", "Index", new { sortOrder = ViewBag.First_NameSortParm, currentFilter = ViewBag.CurrentFilter })
             </td>
             <td>
-                @Html.DisplayNameFor(model => model.Last_Name)
+                @Html.ActionLink("Last_Name", "Index", new { sortOrder = ViewBag.Last_NameSortParm, currentFilter = ViewBag.CurrentFilter })
             </td>
             <td>
-                @Html.DisplayNameFor(model => model.Phone)
+                Phone
             </td>
             <td>
-                @Html.DisplayNameFor(model => model.E_mail)
+                E_mail
             </td>
                 <td>
-                @Html.DisplayNameFor(model => model.Adult)
+                Adult
             </td>
             <th></th>
         </tr>
@@ -57,4 +66,11 @@
 }
     </tbody>
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", 
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
 

@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\HotelReservationManager",
-    "\\HotelReservationManager\\HotelReservationManager"
+    "\\HotelReservationManager\\HotelReservationManager",
+    "\\HotelReservationManager\\HotelReservationManager\\Views",
+    "\\HotelReservationManager\\HotelReservationManager\\Views\\User"
   ],
-  "SelectedNode": "\\HotelReservationManager\\HotelReservationManager\\appsettings.json",
+  "SelectedNode": "\\HotelReservationManager\\HotelReservationManager\\Views\\User\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }

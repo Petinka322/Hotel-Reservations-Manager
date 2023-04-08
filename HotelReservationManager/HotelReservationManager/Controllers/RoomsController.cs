@@ -1,19 +1,54 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HotelReservationManager.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.CodeAnalysis.CSharp;
+using HotelReservationManager.Models;
+using X.PagedList;
+using HotelReservationManager.Migrations;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
 
 namespace HotelReservationManager.Controllers
 {
     public class RoomsController : Controller
     {
-        public async Task<IActionResult> Index()
+        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(await _context.Rooms.ToListAsync());
+            ViewBag.SortOrder = sortOrder;
+            ViewBag.RoomsTypeSortParm = String.IsNullOrEmpty(sortOrder) ? "RoomsType_desc" : "";
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+
+            var rooms = from s in _context.Rooms
+                               select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                rooms = rooms.Where(s => s.RoomsType.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "RoomsType_desc":
+                    rooms = rooms.OrderByDescending(s => s.RoomsType);
+                    break;
+                default:
+                    rooms = rooms.OrderBy(s => s.RoomsType);
+                    break;
+            }
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(rooms.ToPagedList(pageNumber, pageSize));
         }
 
         private readonly HotelDbContext _context;
