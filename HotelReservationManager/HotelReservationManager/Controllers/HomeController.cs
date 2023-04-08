@@ -32,7 +32,7 @@ namespace HotelReservationManager.Controllers
         {
             return View();
         }
-
+        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(Users objUser)
@@ -83,5 +83,6 @@ namespace HotelReservationManager.Controllers
                 return View();
             }
         }
+        */
     }
 }

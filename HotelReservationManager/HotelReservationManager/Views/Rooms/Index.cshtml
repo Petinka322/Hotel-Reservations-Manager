@@ -30,32 +30,31 @@
             <th></th>
         </tr>
     </thead>
-@*
 <tbody>
 @foreach (var item in Model) {
         <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.First_Name)
+                    @Html.DisplayFor(modelItem => item.RoomsCapacity)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Last_Name)
+                    @Html.DisplayFor(modelItem => item.RoomsType)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
+                    @Html.DisplayFor(modelItem => item.Is_Available)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.E_mail)
+                    @Html.DisplayFor(modelItem => item.Price_Adult)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Adult)
+                    @Html.DisplayFor(modelItem => item.Price_Child)
                 </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ClientId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.RoomsId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RoomsId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RoomsId">Delete</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
-*@
+

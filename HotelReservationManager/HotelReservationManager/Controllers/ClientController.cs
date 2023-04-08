@@ -42,6 +42,7 @@ namespace HotelReservationManager.Controllers
             return View();
         }
         // GET: Clients/Delete/5
+        [HttpGet]
         public async Task<IActionResult> Delete(int? clientId)
         {
             if (clientId == null || _context.Clients == null)
@@ -77,6 +78,7 @@ namespace HotelReservationManager.Controllers
             return RedirectToAction(nameof(Index));
         }
         // GET: Client/Edit
+        [HttpGet]
         public async Task<IActionResult> Edit(int? clientID)
         {
             if (clientID == null || _context.Clients == null)
@@ -131,16 +133,16 @@ namespace HotelReservationManager.Controllers
         {
             return _context.Clients.Any(e => e.ClientId == ClientId);
         }
-
-        public async Task<IActionResult> Details(int? ClientId)
+        [HttpGet]
+        public async Task<IActionResult> Details(int? clientId)
         {
-            if (ClientId == null || _context.Clients == null)
+            if (clientId == null || _context.Clients == null)
             {
                 return NotFound();
             }
 
             var clients = await _context.Clients
-                .FirstOrDefaultAsync(m => m.ClientId == ClientId);
+                .FirstOrDefaultAsync(m => m.ClientId == clientId);
             if (clients == null)
             {
                 return NotFound();

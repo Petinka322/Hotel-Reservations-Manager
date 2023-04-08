@@ -24,8 +24,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="Is_Available" class="control-label"></label>
-                <input asp-for="Is_Available" class="form-control" />
-                <span asp-validation-for="Is_Available" class="text-danger"></span>
+                <input type="checkbox" data-val="true" data-val-required="The IsChecked field is required." name="Is_Available" value="true">
+                <input name="Is_Available" type="hidden" value="false" />
             </div>
             <div class="form-group">
                 <label asp-for="Price_Adult" class="control-label"></label>

@@ -18,6 +18,11 @@ namespace HotelReservationManager.Controllers
             _context = context;
         }
 
+        // GET: Clients/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
         // POST: Reservation/Create
         [HttpPost]
         [ValidateAntiForgeryToken]

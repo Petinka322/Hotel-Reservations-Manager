@@ -22,7 +22,7 @@ namespace HotelReservationManager.Controllers
         {
             return View(await _context.Users.ToListAsync());
         }
-
+        /*
         // POST: Users/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -504,5 +504,6 @@ namespace HotelReservationManager.Controllers
 
             return View(client);
         }
+        */
     }
 }
