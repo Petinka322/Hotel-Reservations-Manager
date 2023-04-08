@@ -22,10 +22,10 @@
     <thead>
         <tr>
             <td>
-                @Html.ActionLink("RoomsType", "Index", new { sortOrder = ViewBag.First_NameSortParm, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("RoomsCapacity", "Index", new { sortOrder = ViewBag.RoomsCapacitySortParm, currentFilter = ViewBag.CurrentFilter })
             </td>
             <td>
-                RoomsType
+                @Html.ActionLink("RoomsType", "Index", new { sortOrder = ViewBag.RoomsTypeSortParm, currentFilter = ViewBag.CurrentFilter })
             </td>
             <td>
                 Is_Available

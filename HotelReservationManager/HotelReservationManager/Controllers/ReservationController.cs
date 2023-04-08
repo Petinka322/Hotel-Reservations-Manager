@@ -9,6 +9,7 @@ using HotelReservationManager.Models;
 using X.PagedList;
 using HotelReservationManager.Migrations;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 
 namespace HotelReservationManager.Controllers
 {
@@ -18,6 +19,7 @@ namespace HotelReservationManager.Controllers
         {
             ViewBag.SortOrder = sortOrder;
             ViewBag.UsenameSortParm = String.IsNullOrEmpty(sortOrder) ? "Usename_desc" : "";
+            ViewBag.RoomsIdSortParm = String.IsNullOrEmpty(sortOrder) ? "RoomsId_desc" : "";
             if (searchString != null)
             {
                 page = 1;
@@ -40,8 +42,14 @@ namespace HotelReservationManager.Controllers
                 case "Usename_desc":
                     reservations = reservations.OrderByDescending(s => s.Usename);
                     break;
-                default:
+                case "RoomsId_desc":
+                    reservations = reservations.OrderByDescending(s => s.RoomsId);
+                    break;
+                case "Usename":
                     reservations = reservations.OrderBy(s => s.Usename);
+                    break;
+                default:
+                    reservations = reservations.OrderBy(s => s.RoomsId);
                     break;
             }
 
@@ -57,16 +65,22 @@ namespace HotelReservationManager.Controllers
             _context = context;
         }
 
-        // GET: Clients/Create
-        public IActionResult Create()
+        // GET: Reservation/Create
+        public async Task<IActionResult> Create()
         {
+            var room = await _context.Rooms.ToListAsync();
+            ViewBag.Rooms = new SelectList(room, "RoomsId", "RoomsId");
             return View();
         }
         // POST: Reservation/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Username, Arrval_Date, Departure_Date, Breakfast, All_Inclusive, Price")] Reservation reservation)
+        public async Task<IActionResult> Create([Bind("ResId,RoomsId,Usename, Arrval_Date, Departure_Date, Breakfast, All_Inclusive, Price")] Reservation reservation)
         {
+            if (reservation.RoomsId <= 0)
+            {
+                return Problem("The room number cannot be below or equal to 0!");
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(reservation);

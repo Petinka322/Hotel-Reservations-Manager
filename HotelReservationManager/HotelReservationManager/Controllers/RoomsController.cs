@@ -19,6 +19,7 @@ namespace HotelReservationManager.Controllers
         {
             ViewBag.SortOrder = sortOrder;
             ViewBag.RoomsTypeSortParm = String.IsNullOrEmpty(sortOrder) ? "RoomsType_desc" : "";
+            ViewBag.RoomsCapacitySortParm = String.IsNullOrEmpty(sortOrder) ? "RoomsCapacity_desc" : "";
             if (searchString != null)
             {
                 page = 1;
@@ -40,6 +41,12 @@ namespace HotelReservationManager.Controllers
             {
                 case "RoomsType_desc":
                     rooms = rooms.OrderByDescending(s => s.RoomsType);
+                    break;
+                case "RoomsCapacity_desc":
+                    rooms = rooms.OrderByDescending(s => s.RoomsCapacity);
+                    break;
+                case "RoomsCapacity":
+                    rooms = rooms.OrderBy(s => s.RoomsCapacity);
                     break;
                 default:
                     rooms = rooms.OrderBy(s => s.RoomsType);

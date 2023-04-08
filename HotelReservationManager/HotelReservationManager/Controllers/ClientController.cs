@@ -85,7 +85,6 @@ namespace HotelReservationManager.Controllers
             return View();
         }
         // GET: Clients/Delete/5
-        [HttpGet]
         public async Task<IActionResult> Delete(int? clientId)
         {
             if (clientId == null || _context.Clients == null)
@@ -93,19 +92,19 @@ namespace HotelReservationManager.Controllers
                 return NotFound();
             }
 
-            var clients = await _context.Clients
+            var Clients = await _context.Clients
                 .FirstOrDefaultAsync(m => m.ClientId == clientId);
-            if (clients == null)
+            if (Clients == null)
             {
                 return NotFound();
             }
 
-            return View(clients);
+            return View(Clients);
         }
         // POST: Client/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int? clientId)
+        public async Task<IActionResult> DeleteConfirmed(int clientId)
         {
             if (_context.Clients == null)
             {
@@ -200,18 +199,18 @@ namespace HotelReservationManager.Controllers
             var reservations = await _context.Reservations.ToListAsync();
             var clients = await _context.Clients.ToListAsync();
 
-            ViewBag.Events = new SelectList(reservations, "Id", "Name");
-            ViewBag.Attendees = new SelectList(clients, "Id", "Name");
+            ViewBag.Reservations = new SelectList(reservations, "ResId", "Usename");
+            ViewBag.Clients = new SelectList(clients, "ClientId", "First_Name");
 
             return View();
         }
 
         // POST: Clients/Associate
         [HttpPost]
-        public async Task<IActionResult> Associate(int eventId, int attendeeId)
+        public async Task<IActionResult> Associate(int resId, int clientId)
         {
-            var client = await _context.Clients.FindAsync(attendeeId);
-            var reservation = await _context.Reservations.FindAsync(eventId);
+            var client = await _context.Clients.FindAsync(clientId);
+            var reservation = await _context.Reservations.FindAsync(resId);
 
             if (client == null || reservation == null)
             {
