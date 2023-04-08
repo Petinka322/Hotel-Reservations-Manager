@@ -93,15 +93,15 @@ namespace HotelReservationManager.Controllers
             return View(rooms);
         }
         // GET: Rooms/Delete/5
-        public async Task<IActionResult> Delete(int? RoomId)
+        public async Task<IActionResult> Delete(int? id)
         {
-            if (RoomId == null || _context.Rooms == null)
+            if (id == null || _context.Rooms == null)
             {
                 return NotFound();
             }
 
             var rooms = await _context.Rooms
-                .FirstOrDefaultAsync(m => m.RoomsId == RoomId);
+                .FirstOrDefaultAsync(m => m.RoomsId == id);
             if (rooms == null)
             {
                 return NotFound();
@@ -112,13 +112,13 @@ namespace HotelReservationManager.Controllers
         // POST: Rooms/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int? RoomId)
+        public async Task<IActionResult> DeleteConfirmed(int? id)
         {
             if (_context.Reservations == null)
             {
                 return Problem("This reservation is missing.");
             }
-            var rooms = await _context.Rooms.FindAsync(RoomId);
+            var rooms = await _context.Rooms.FindAsync(id);
             if (rooms != null)
             {
                 _context.Rooms.Remove(rooms);
@@ -128,14 +128,14 @@ namespace HotelReservationManager.Controllers
             return RedirectToAction(nameof(Index));
         }
         // GET: Rooms/Edit
-        public async Task<IActionResult> Edit(int? RoomId)
+        public async Task<IActionResult> Edit(int? id)
         {
-            if (RoomId == null || _context.Rooms == null)
+            if (id == null || _context.Rooms == null)
             {
                 return NotFound();
             }
 
-            var rooms = await _context.Users.FindAsync(RoomId);
+            var rooms = await _context.Rooms.FindAsync(id);
             if (rooms == null)
             {
                 return NotFound();
@@ -145,9 +145,9 @@ namespace HotelReservationManager.Controllers
         // POST: Rooms/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int RoomId, [Bind("RoomsId,RoomsCapacity,RoomsType,Is_Available,Price_Adult,Price_Child")] Rooms rooms)
+        public async Task<IActionResult> Edit(int id, [Bind("RoomsId,RoomsCapacity,RoomsType,Is_Available,Price_Adult,Price_Child")] Rooms rooms)
         {
-            if (RoomId != rooms.RoomsId)
+            if (id != rooms.RoomsId)
             {
                 return NotFound();
             }
@@ -175,15 +175,15 @@ namespace HotelReservationManager.Controllers
             return View(rooms);
         }
         // GET: Rooms/Details/
-        public async Task<IActionResult> Details(int? RoomId)
+        public async Task<IActionResult> Details(int? id)
         {
-            if (RoomId == null || _context.Rooms == null)
+            if (id == null || _context.Rooms == null)
             {
                 return NotFound();
             }
 
             var rooms = await _context.Rooms
-                .FirstOrDefaultAsync(m => m.RoomsId == RoomId);
+                .FirstOrDefaultAsync(m => m.RoomsId == id);
             if (rooms == null)
             {
                 return NotFound();

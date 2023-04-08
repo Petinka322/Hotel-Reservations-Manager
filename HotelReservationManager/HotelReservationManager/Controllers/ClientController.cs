@@ -85,15 +85,15 @@ namespace HotelReservationManager.Controllers
             return View();
         }
         // GET: Clients/Delete/5
-        public async Task<IActionResult> Delete(int? clientId)
+        public async Task<IActionResult> Delete(int? id)
         {
-            if (clientId == null || _context.Clients == null)
+            if (id == null || _context.Clients == null)
             {
                 return NotFound();
             }
 
             var Clients = await _context.Clients
-                .FirstOrDefaultAsync(m => m.ClientId == clientId);
+                .FirstOrDefaultAsync(m => m.ClientId == id);
             if (Clients == null)
             {
                 return NotFound();
@@ -104,13 +104,13 @@ namespace HotelReservationManager.Controllers
         // POST: Client/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int clientId)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Clients == null)
             {
                 return Problem("This client is missing.");
             }
-            var clients = await _context.Clients.FindAsync(clientId);
+            var clients = await _context.Clients.FindAsync(id);
             if (clients != null)
             {
                 _context.Clients.Remove(clients);
@@ -119,28 +119,27 @@ namespace HotelReservationManager.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        // GET: Client/Edit
-        [HttpGet]
-        public async Task<IActionResult> Edit(int? clientID)
+        // GET: Client/Edit/5
+        public async Task<IActionResult> Edit(int? id)
         {
-            if (clientID == null || _context.Clients == null)
+            if (id == null || _context.Clients == null)
             {
                 return NotFound();
             }
 
-            var clients = await _context.Clients.FindAsync(clientID);
+            var clients = await _context.Clients.FindAsync(id);
             if (clients == null)
             {
                 return NotFound();
             }
             return View(clients);
         }
-        // POST: Client/Edit/5
+        // POST: Client/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int clientId, [Bind("ClientId, First_Name, Last_Name, Phone, E_mail, Adult,Reservations")] Clients clients)
+        public async Task<IActionResult> Edit(int id, [Bind("ClientId, First_Name, Last_Name, Phone, E_mail, Adult,Reservations")] Clients clients)
         {
-            if (clientId != clients.ClientId)
+            if (id != clients.ClientId)
             {
                 return NotFound();
             }
@@ -167,24 +166,24 @@ namespace HotelReservationManager.Controllers
             }
             return View(clients);
         }
-        private bool ReservationExists(int resId)
+        private bool ReservationExists(int id)
         {
-            return _context.Reservations.Any(e => e.ResId == resId);
+            return _context.Reservations.Any(e => e.ResId == id);
         }
-        private bool ClientExists(int ClientId)
+        private bool ClientExists(int id)
         {
-            return _context.Clients.Any(e => e.ClientId == ClientId);
+            return _context.Clients.Any(e => e.ClientId == id);
         }
         [HttpGet]
-        public async Task<IActionResult> Details(int? clientId)
+        public async Task<IActionResult> Details(int? id)
         {
-            if (clientId == null || _context.Clients == null)
+            if (id == null || _context.Clients == null)
             {
                 return NotFound();
             }
 
             var clients = await _context.Clients
-                .FirstOrDefaultAsync(m => m.ClientId == clientId);
+                .FirstOrDefaultAsync(m => m.ClientId == id);
             if (clients == null)
             {
                 return NotFound();
@@ -207,9 +206,9 @@ namespace HotelReservationManager.Controllers
 
         // POST: Clients/Associate
         [HttpPost]
-        public async Task<IActionResult> Associate(int resId, int clientId)
+        public async Task<IActionResult> Associate(int resId, int id)
         {
-            var client = await _context.Clients.FindAsync(clientId);
+            var client = await _context.Clients.FindAsync(id);
             var reservation = await _context.Reservations.FindAsync(resId);
 
             if (client == null || reservation == null)

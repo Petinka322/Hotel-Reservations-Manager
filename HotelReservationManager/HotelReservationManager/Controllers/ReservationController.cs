@@ -90,15 +90,15 @@ namespace HotelReservationManager.Controllers
             return View(reservation);
         }
         // GET: Reservation/Delete
-        public async Task<IActionResult> Delete(int? resId)
+        public async Task<IActionResult> Delete(int? id)
         {
-            if (resId == null || _context.Reservations == null)
+            if (id == null || _context.Reservations == null)
             {
                 return NotFound();
             }
 
             var reservation = await _context.Reservations
-                .FirstOrDefaultAsync(m => m.ResId == resId);
+                .FirstOrDefaultAsync(m => m.ResId == id);
             if (reservation == null)
             {
                 return NotFound();
@@ -109,13 +109,13 @@ namespace HotelReservationManager.Controllers
         // POST: Reservation/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int? resId)
+        public async Task<IActionResult> DeleteConfirmed(int? id)
         {
             if (_context.Reservations == null)
             {
                 return Problem("This reservation is missing.");
             }
-            var reservation = await _context.Rooms.FindAsync(resId);
+            var reservation = await _context.Rooms.FindAsync(id);
             if (reservation != null)
             {
                 _context.Rooms.Remove(reservation);
@@ -125,14 +125,16 @@ namespace HotelReservationManager.Controllers
             return RedirectToAction(nameof(Index));
         }
         // GET: Reservation/Edit
-        public async Task<IActionResult> Edit(int? resId)
+        public async Task<IActionResult> Edit(int? id)
         {
-            if (resId == null || _context.Reservations == null)
+            var room = await _context.Rooms.ToListAsync();
+            ViewBag.Rooms = new SelectList(room, "RoomsId", "RoomsId");
+            if (id == null || _context.Reservations == null)
             {
                 return NotFound();
             }
 
-            var reservation = await _context.Users.FindAsync(resId);
+            var reservation = await _context.Reservations.FindAsync(id);
             if (reservation == null)
             {
                 return NotFound();
@@ -142,9 +144,9 @@ namespace HotelReservationManager.Controllers
         // POST: Reservation/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int resId, [Bind("ResId,RoomsId,Username,Clients,Arrival_date, Departure_date,Breakfast,All_inclusive,Price")] Reservation reservation)
+        public async Task<IActionResult> Edit(int id, [Bind("ResId,RoomsId,Username,Clients,Arrival_date, Departure_date,Breakfast,All_inclusive,Price")] Reservation reservation)
         {
-            if (resId != reservation.ResId)
+            if (id != reservation.ResId)
             {
                 return NotFound();
             }
@@ -172,15 +174,15 @@ namespace HotelReservationManager.Controllers
             return View(reservation);
         }
         // GET: Reservation/Details/
-        public async Task<IActionResult> Details(int? resId)
+        public async Task<IActionResult> Details(int? id)
         {
-            if (resId == null || _context.Reservations == null)
+            if (id == null || _context.Reservations == null)
             {
                 return NotFound();
             }
 
             var reservation = await _context.Reservations
-                .FirstOrDefaultAsync(m => m.ResId == resId);
+                .FirstOrDefaultAsync(m => m.ResId == id);
             if (reservation == null)
             {
                 return NotFound();

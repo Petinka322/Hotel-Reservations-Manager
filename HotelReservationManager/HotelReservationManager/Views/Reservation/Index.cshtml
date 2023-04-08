@@ -6,7 +6,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Reservations</h1>
 
 <p>
     <a asp-action="Create">Create New Reservation</a>
@@ -14,7 +14,7 @@
 @using (Html.BeginForm("Index", "Reservation", FormMethod.Get))
 {
     <p>
-        Find by Usename: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        Find by Name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
         <input type="submit" value="Search" />
     </p>
 }
@@ -25,7 +25,7 @@
                 @Html.ActionLink("RoomsId", "Index", new { sortOrder = ViewBag.RoomsIdSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th>
-                @Html.ActionLink("Usename", "Index", new { sortOrder = ViewBag.UsenameSortParm, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.UsenameSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th>
                 Arrival_date

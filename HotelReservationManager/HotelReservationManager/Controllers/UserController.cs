@@ -94,16 +94,16 @@ namespace HotelReservationManager.Controllers
         }
         // GET: Users/Delete
         [HttpGet]
-        public async Task<IActionResult> Delete(string? EGN)
+        public async Task<IActionResult> Delete(string? id)
         {
             Console.WriteLine("Inside Delete action method.");
-            if (EGN == null || _context.Users == null)
+            if (id == null || _context.Users == null)
             {
                 return NotFound();
             }
 
             var user = await _context.Users
-                .FirstOrDefaultAsync(m => m.EGN == EGN);
+                .FirstOrDefaultAsync(m => m.EGN == id);
             if (user == null)
             {
                 return NotFound();
@@ -114,13 +114,13 @@ namespace HotelReservationManager.Controllers
         // POST: Users/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string EGN)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
             if (_context.Users == null)
             {
                 return Problem("This user is missing.");
             }
-            var user = await _context.Users.FindAsync(EGN);
+            var user = await _context.Users.FindAsync(id);
             if (user != null)
             {
                 _context.Users.Remove(user);
@@ -130,15 +130,15 @@ namespace HotelReservationManager.Controllers
             return RedirectToAction(nameof(Index));
         }
         // GET: User/Details/
-        public async Task<IActionResult> Details(string? egn)
+        public async Task<IActionResult> Details(string? id)
         {
-            if (egn == null || _context.Users == null)
+            if (id == null || _context.Users == null)
             {
                 return NotFound();
             }
 
             var user = await _context.Users
-                .FirstOrDefaultAsync(m => m.EGN == egn);
+                .FirstOrDefaultAsync(m => m.EGN == id);
             if (user == null)
             {
                 return NotFound();
@@ -147,14 +147,14 @@ namespace HotelReservationManager.Controllers
             return View(user);
         }
         // GET: Users/Edit/5
-        public async Task<IActionResult> Edit(string? egn)
+        public async Task<IActionResult> Edit(string? id)
         {
-            if (egn == null || _context.Users == null)
+            if (id == null || _context.Users == null)
             {
                 return NotFound();
             }
 
-            var user = await _context.Users.FindAsync(egn);
+            var user = await _context.Users.FindAsync(id);
             if (user == null)
             {
                 return NotFound();
@@ -164,9 +164,9 @@ namespace HotelReservationManager.Controllers
         // POST: User/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string egn, [Bind("Password,Username,First_name,Second_name,Last_name, EGN,Phone, E_mail,Hire_date,Is_active, Release_date")] Users user)
+        public async Task<IActionResult> Edit(string id, [Bind("Password,Username,First_name,Second_name,Last_name, EGN,Phone, E_mail,Hire_date,Is_active, Release_date")] Users user)
         {
-            if (egn != user.EGN)
+            if (id != user.EGN)
             {
                 return NotFound();
             }
@@ -193,9 +193,9 @@ namespace HotelReservationManager.Controllers
             }
             return View(user);
         }
-        private bool UserExists(string EGN)
+        private bool UserExists(string id)
         {
-            return _context.Users.Any(e => e.EGN == EGN);
+            return _context.Users.Any(e => e.EGN == id);
         }
     }
 }
