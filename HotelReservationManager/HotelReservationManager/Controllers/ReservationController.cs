@@ -53,7 +53,7 @@ namespace HotelReservationManager.Controllers
                     break;
             }
 
-            int pageSize = 3;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
             return View(reservations.ToPagedList(pageNumber, pageSize));
         }
@@ -78,7 +78,7 @@ namespace HotelReservationManager.Controllers
         // POST: Reservation/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ResId,RoomsId,Username, Arrval_Date, Departure_Date, Breakfast, All_Inclusive, Price")] Reservation reservation)
+        public async Task<IActionResult> Create([Bind("ResId,RoomsId,Username,Arrival_date,Departure_date, Breakfast, All_Inclusive, Price")] Reservation reservation)
         {
             var room = _context.Rooms.Where(m => m.RoomsId == reservation.RoomsId).FirstOrDefault();
             if (reservation.RoomsId <= 0)
@@ -89,17 +89,22 @@ namespace HotelReservationManager.Controllers
             {
                 return Problem("The room number doesn't exist!");
             }
+            if (reservation.Departure_date < reservation.Arrival_date)
+            {
+                return Problem("The reservation arrival date cannot be later than the departure date!");
+            }
             if (ModelState.IsValid)
             {
-                reservation.Price = (room.Price_Adult) * reservation.Clients.Where(m => m.Adult == true).Count() + (room.Price_Child) * reservation.Clients.Where(m => m.Adult == false).Count();
-                if (reservation.All_inclusive == true)
+                
+                if (reservation.All_inclusive == true && reservation.Clients != null)
                 {
-                    reservation.Price += int.Parse((reservation.Arrival_date - reservation.Departure_date).ToString()) * 25;
+                    reservation.Price += reservation.Departure_date.Subtract(reservation.Arrival_date).Days * 25;
                 }
-                if (reservation.Breakfast == true)
+                if (reservation.Breakfast == true && reservation.Clients != null)
                 {
-                    reservation.Price += int.Parse((reservation.Arrival_date - reservation.Departure_date).ToString()) * 15;
+                    reservation.Price += reservation.Departure_date.Subtract(reservation.Arrival_date).Days * 15;
                 }
+                reservation.Price += ((room.Price_Adult * reservation.Clients.Count(m => m.Adult) + (room.Price_Child * reservation.Clients.Count(m => !m.Adult))) * (reservation.Departure_date.Subtract(reservation.Arrival_date).Days));
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -132,10 +137,10 @@ namespace HotelReservationManager.Controllers
             {
                 return Problem("This reservation is missing.");
             }
-            var reservation = await _context.Rooms.FindAsync(id);
+            var reservation = await _context.Reservations.FindAsync(id);
             if (reservation != null)
             {
-                _context.Rooms.Remove(reservation);
+                _context.Reservations.Remove(reservation);
             }
 
             await _context.SaveChangesAsync();
@@ -144,7 +149,7 @@ namespace HotelReservationManager.Controllers
         // GET: Reservation/Edit
         public async Task<IActionResult> Edit(int? id)
         {
-            var room = await _context.Rooms.ToListAsync();
+            var room = await _context.Reservations.ToListAsync();
             ViewBag.Rooms = new SelectList(room, "RoomsId", "RoomsId");
             if (id == null || _context.Reservations == null)
             {
@@ -161,15 +166,33 @@ namespace HotelReservationManager.Controllers
         // POST: Reservation/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ResId,RoomsId,Username,Clients,Arrival_date, Departure_date,Breakfast,All_inclusive,Price")] Reservation reservation)
+        public async Task<IActionResult> Edit(int id, [Bind("ResId,RoomsId,Username,Clients,Arrival_date,Departure_date,Breakfast,All_inclusive,Price")] Reservation reservation)
         {
-            if (id != reservation.ResId)
+            var room = _context.Rooms.Where(m => m.RoomsId == reservation.RoomsId).FirstOrDefault();
+            if (reservation.RoomsId <= 0)
             {
-                return NotFound();
+                return Problem("The room number cannot be below or equal to 0!");
             }
-
+            if (reservation.RoomsId != room.RoomsId )
+            {
+                return Problem("The room number doesn't exist!");
+            }
+            if (reservation.Arrival_date >= reservation.Departure_date)
+            {
+                return Problem("The reservation arrival date cannot be the same or earlier than the departure date!");
+            }
             if (ModelState.IsValid)
             {
+               
+                if (reservation.All_inclusive == true && reservation.Clients != null )
+                {
+                    reservation.Price += reservation.Departure_date.Subtract(reservation.Arrival_date).Days * 25;
+                }
+                if (reservation.Breakfast == true && reservation.Clients != null)
+                {
+                    reservation.Price += reservation.Departure_date.Subtract(reservation.Arrival_date).Days * 15;
+                }
+                reservation.Price += ((room.Price_Adult * reservation.Clients.Count(m => m.Adult) + (room.Price_Child * reservation.Clients.Count(m => !m.Adult))) * (reservation.Departure_date.Subtract(reservation.Arrival_date).Days));
                 try
                 {
                     _context.Update(reservation);
@@ -185,6 +208,7 @@ namespace HotelReservationManager.Controllers
                     {
                         throw;
                     }
+
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -217,7 +241,7 @@ namespace HotelReservationManager.Controllers
             var reservations = await _context.Reservations.ToListAsync();
             var clients = await _context.Clients.ToListAsync();
 
-            ViewBag.Reservations = new SelectList(reservations, "ResId", "Username");
+            ViewBag.Reservations = new SelectList(reservations, "ResId", "RoomsId");
             ViewBag.Clients = new SelectList(clients, "ClientId", "First_Name");
 
             return View();

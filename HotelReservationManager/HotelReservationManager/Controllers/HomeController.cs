@@ -4,6 +4,7 @@ using HotelReservationManager.Models;
 using HotelReservationManager.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace HotelReservationManager.Controllers
 {
@@ -26,17 +27,20 @@ namespace HotelReservationManager.Controllers
         [HttpPost]
         public IActionResult Index(string username, string password)
         {
+
             var status = _context.Users.Where(m => m.Username == username && m.Password == password).FirstOrDefault();
+            LogInfo info = new LogInfo();
+            info.Set(status.Is_Administrator);
             if (status != null)
             {
                 if (status.Is_Administrator == true && status.Is_active == true)
                 {
-                    ViewBag.Message = "Success full login";
+                    ViewBag.Message = "Successfull login";
                     return View("Manager");
                 }
                 else if(status.Is_active == true)
                 {
-                    ViewBag.Message = "Success full login";
+                    ViewBag.Message = "Successfull login";
                     return View("User");
                 }
             }

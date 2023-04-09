@@ -31,8 +31,7 @@ namespace HotelReservationManager.Controllers
             }
             ViewBag.CurrentFilter = searchString;
 
-            var clients = from s in _context.Clients
-                           select s;
+            var clients = from s in _context.Clients select s;
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -55,7 +54,7 @@ namespace HotelReservationManager.Controllers
                     break;
             }
 
-            int pageSize = 3;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
             return View(clients.ToPagedList(pageNumber, pageSize));
         }
@@ -72,9 +71,7 @@ namespace HotelReservationManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ClientId, First_Name, Last_Name, Phone, E_mail, Adult")] Clients clients)
         {
-            Regex regex = new Regex(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-
-         9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
-         RegexOptions.CultureInvariant | RegexOptions.Singleline);
+            Regex regex = new Regex(@"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
 
             if (clients.Phone.Length != 10)
             {
@@ -156,7 +153,16 @@ namespace HotelReservationManager.Controllers
             {
                 return NotFound();
             }
+            Regex regex = new Regex(@"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
 
+            if (clients.Phone.Length != 10)
+            {
+                return Problem("Phone number cannot be longer or shorter than 10 digits!");
+            }
+            if (regex.IsMatch(clients.E_mail) == false)
+            {
+                return Problem("This is not an email!");
+            }
             if (ModelState.IsValid)
             {
                 try

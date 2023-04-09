@@ -11,6 +11,7 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="EGN" />
             <div class="form-group">
                 <label asp-for="Username" class="control-label"></label>
                 <input asp-for="Username" class="form-control" />
@@ -43,12 +44,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="EGN" class="control-label"></label>
-                <input asp-for="EGN" class="form-control" />
+                <input asp-for="EGN" class="form-control" maxlength="10" />
                 <span asp-validation-for="EGN" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Phone" class="control-label"></label>
-                <input asp-for="Phone" class="form-control" />
+                <input asp-for="Phone" class="form-control" maxlength="10" />
                 <span asp-validation-for="Phone" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -69,7 +70,6 @@
             <div class="form-group">
                 <label asp-for="Release_date" class="control-label"></label>
                 <input asp-for="Release_date" class="form-control" />
-                <span asp-validation-for="Release_date" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

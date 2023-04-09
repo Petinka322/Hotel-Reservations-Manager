@@ -20,6 +20,7 @@ namespace HotelReservationManager.Controllers
             ViewBag.SortOrder = sortOrder;
             ViewBag.RoomsTypeSortParm = String.IsNullOrEmpty(sortOrder) ? "RoomsType_desc" : "";
             ViewBag.RoomsCapacitySortParm = String.IsNullOrEmpty(sortOrder) ? "RoomsCapacity_desc" : "";
+            ViewBag.Is_AvailableSortParm = String.IsNullOrEmpty(sortOrder) ? "Is_Available_desc" : "";
             if (searchString != null)
             {
                 page = 1;
@@ -30,12 +31,13 @@ namespace HotelReservationManager.Controllers
             }
             ViewBag.CurrentFilter = searchString;
 
-            var rooms = from s in _context.Rooms
-                               select s;
+            var rooms = from s in _context.Rooms select s;
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                rooms = rooms.Where(s => s.RoomsType.Contains(searchString));
+                rooms = rooms.Where(s => s.RoomsCapacity.ToString().Contains(searchString)
+                || s.RoomsType.Contains(searchString)
+                || s.Is_Available);
             }
             switch (sortOrder)
             {
@@ -48,12 +50,18 @@ namespace HotelReservationManager.Controllers
                 case "RoomsCapacity":
                     rooms = rooms.OrderBy(s => s.RoomsCapacity);
                     break;
+                case "Is_Available_desc":
+                    rooms = rooms.OrderByDescending(s => s.Is_Available);
+                    break;
+                case "Is_Available":
+                    rooms = rooms.OrderBy(s => s.Is_Available);
+                    break;
                 default:
                     rooms = rooms.OrderBy(s => s.RoomsType);
                     break;
             }
 
-            int pageSize = 3;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
             return View(rooms.ToPagedList(pageNumber, pageSize));
         }
@@ -155,7 +163,18 @@ namespace HotelReservationManager.Controllers
             {
                 return NotFound();
             }
-
+            if (rooms.RoomsCapacity <= 0)
+            {
+                return Problem("The room cannot have 0 or less than 0 capacity!");
+            }
+            if (rooms.Price_Adult <= rooms.Price_Child)
+            {
+                return Problem("The Price for an Adult cannot be larger than the Price for a Child!");
+            }
+            if (rooms.Price_Adult <= 0 || rooms.Price_Child < 0)
+            {
+                return Problem("The price for an adult or child cannot be lower than 0!");
+            }
             if (ModelState.IsValid)
             {
                 try

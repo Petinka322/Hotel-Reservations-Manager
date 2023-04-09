@@ -1,11 +1,23 @@
 ﻿@model X.PagedList.IPagedList<HotelReservationManager.Models.Users>
 @using PagedList.Core.Mvc;
 @using X.PagedList.Mvc.Core;
+@using HotelReservationManager.Controllers;
 
 @{
     ViewData["Title"] = "Index";
 }
 
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Manager" asp-action="Index">Home</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
 <h1>Users</h1>
 
 <p>
@@ -14,7 +26,7 @@
 @using (Html.BeginForm("Index", "User", FormMethod.Get))
 {
     <p>
-        Find by First name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        Search: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
         <input type="submit" value="Search" />
     </p>
 }
@@ -22,7 +34,7 @@
     <thead>
         <tr>
             <td>
-                Username
+                @Html.ActionLink("Username", "Index", new { sortOrder = ViewBag.UsernameSortParm, currentFilter = ViewBag.CurrentFilter })
             </td>
             <td>
                 Password
@@ -31,10 +43,10 @@
                 @Html.ActionLink("First_name", "Index", new { sortOrder = ViewBag.First_NameSortParm, currentFilter = ViewBag.CurrentFilter })
             </td>
             <td>
-                @Html.ActionLink("Second_name", "Index", new { sortOrder = ViewBag.First_NameSortParm, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Second_name", "Index", new { sortOrder = ViewBag.Second_NameSortParm, currentFilter = ViewBag.CurrentFilter })
             </td>
             <td>
-                @Html.ActionLink("Last_name", "Index", new { sortOrder = ViewBag.First_NameSortParm, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Last_name", "Index", new { sortOrder = ViewBag.Last_NameSortParm, currentFilter = ViewBag.CurrentFilter })
             </td>
             <td>
                 Is_Administrator
@@ -46,7 +58,7 @@
                 Phone
             </td>
             <td>
-                E_mail
+                @Html.ActionLink("E_mail", "Index", new { sortOrder = ViewBag.E_mailSortParm, currentFilter = ViewBag.CurrentFilter })
             </td>
             <td>
                 Hire_date
@@ -67,7 +79,7 @@
                     @Html.DisplayFor(modelItem => item.Username)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Username)
+                    @Html.DisplayFor(modelItem => item.Password)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.First_name)

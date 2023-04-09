@@ -10,7 +10,7 @@ using X.PagedList;
 using HotelReservationManager.Migrations;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.RegularExpressions;
-
+using Microsoft.AspNetCore.Identity;
 
 namespace HotelReservationManager.Controllers
 {
@@ -25,9 +25,11 @@ namespace HotelReservationManager.Controllers
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.SortOrder = sortOrder;
+            ViewBag.UsernameSortParm = String.IsNullOrEmpty(sortOrder) ? "username_desc" : "";
             ViewBag.First_NameSortParm = String.IsNullOrEmpty(sortOrder) ? "first_name_desc" : "";
             ViewBag.Second_NameSortParm = String.IsNullOrEmpty(sortOrder) ? "second_name_desc" : "";
             ViewBag.Last_NameSortParm = String.IsNullOrEmpty(sortOrder) ? "last_name_desc" : "";
+            ViewBag.E_mailSortParm = String.IsNullOrEmpty(sortOrder) ? "E_mail_desc" : "";
 
             if (searchString != null)
             {
@@ -39,14 +41,15 @@ namespace HotelReservationManager.Controllers
             }
             ViewBag.CurrentFilter = searchString;
 
-            var users = from s in _context.Users
-                          select s;
+            var users = from s in _context.Users select s;
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                users = users.Where(s => s.First_name.Contains(searchString)
+                users = users.Where(s => s.Username.Contains(searchString)
+                                       || s.First_name.Contains(searchString)
                                        || s.Second_name.Contains(searchString)
-                                       || s.Last_name.Contains(searchString));  
+                                       || s.Last_name.Contains(searchString)
+                                       || s.E_mail.Contains(searchString));
             }
             switch (sortOrder)
             {
@@ -65,12 +68,24 @@ namespace HotelReservationManager.Controllers
                 case "last_name_desc":
                     users = users.OrderByDescending(s => s.Last_name);
                     break;
+                case "Username":
+                    users = users.OrderBy(s => s.Username);
+                    break;
+                case "Username_desc":
+                    users = users.OrderByDescending(s => s.Username);
+                    break;
+                case "E_mail":
+                    users = users.OrderBy(s => s.E_mail);
+                    break;
+                case "E_mail_desc":
+                    users = users.OrderByDescending(s => s.E_mail);
+                    break;
                 default:
                     users = users.OrderBy(s => s.First_name);
                     break;
             }
 
-            int pageSize = 3;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
             return View(users.ToPagedList(pageNumber, pageSize));
         }
@@ -85,13 +100,10 @@ namespace HotelReservationManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Password,Username,First_name,Second_name,Last_name,Is_Administrator,EGN,Phone,E_mail,Hire_date,Is_active,Release_date")] Users user)
         {
-            Regex regex = new Regex(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-
-         9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
-RegexOptions.CultureInvariant | RegexOptions.Singleline);
-
+            Regex regex = new Regex(@"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
             if (user.EGN.Length != 10)
             {
-                return Problem("EGN cannot be longer or shorter than 10 digits!");
+                return Problem("EGN cannot be shorter than 10 digits!");
             }
             if (user.Phone.Length !=10)
             {
@@ -100,10 +112,6 @@ RegexOptions.CultureInvariant | RegexOptions.Singleline);
             if (regex.IsMatch(user.E_mail) == false)
             {
                 return Problem("This is not an email!");
-            }
-            if (user.Hire_date <= user.Release_date)
-            {
-                return Problem("The date of hire cannot be the same or later than the date of release!");
             }
             if (ModelState.IsValid)
             {
@@ -185,11 +193,25 @@ RegexOptions.CultureInvariant | RegexOptions.Singleline);
         // POST: User/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Password,Username,First_name,Second_name,Last_name, EGN,Phone, E_mail,Hire_date,Is_active, Release_date")] Users user)
+        public async Task<IActionResult> Edit(string id, [Bind("Username,Password,First_name,Second_name,Last_name,Is_Administrator,EGN,Phone,E_mail,Hire_date,Is_active,Release_date")] Users user)
         {
-            if (id != user.EGN)
+            Regex regex = new Regex(@"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
+
+            if (user.EGN.Length < 10)
             {
-                return NotFound();
+                return Problem("EGN cannot be shorter than 10 digits!");
+            }
+            if (user.Phone.Length != 10)
+            {
+                return Problem("Phone number cannot be longer or shorter than 10 digits!");
+            }
+            if (regex.IsMatch(user.E_mail) == false)
+            {
+                return Problem("This is not an email!");
+            }
+            if (user.Hire_date >= user.Release_date)
+            {
+                return Problem("The date of hire cannot be the same or later than the date of release!");
             }
 
             if (ModelState.IsValid)

@@ -30,13 +30,6 @@ namespace HotelReservationManager.Models
                 .WithMany(r => r.Reservations);
             });
 
-            modelBuilder.Entity<Reservation>(entity =>
-            {
-                entity.HasKey(e => e.ResId);
-                entity.HasMany(c => c.Users)
-                .WithMany(r => r.Reservations);
-            });
-
 
 
             modelBuilder.Entity<Clients>(entity =>

@@ -12,15 +12,33 @@ namespace HotelReservationManager.Controllers
     public class ManagerController : Controller
     {
         private readonly HotelDbContext _context;
-
         public ManagerController(HotelDbContext context)
         {
             _context = context;
         }
+        
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Users.ToListAsync());
+            LogInfo info = new LogInfo();
+            Console.WriteLine(info);
+            if (info.Get())
+            {
+                return View("Manager");
+            }
+            else 
+            {
+                return View("User");
+            }
+            
+        }
+        public IActionResult Manager()
+        {
+            return View("Manager");
+        }
+        public IActionResult User()
+        {
+            return View("User");
         }
     }
 }

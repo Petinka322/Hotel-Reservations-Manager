@@ -14,6 +14,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.0",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.13",
+          "Microsoft.Web.Infrastructure": "2.0.0",
           "PagedList.Core.Mvc": "3.0.0",
           "PagedList.Mvc": "4.5.0",
           "X.PagedList": "8.4.7",
@@ -109,7 +110,7 @@
       "Microsoft.AspNet.WebPages/3.2.7": {
         "dependencies": {
           "Microsoft.AspNet.Razor": "3.2.7",
-          "Microsoft.Web.Infrastructure": "1.0.0"
+          "Microsoft.Web.Infrastructure": "2.0.0"
         },
         "runtime": {
           "lib/net45/System.Web.Helpers.dll": {
@@ -1289,11 +1290,11 @@
           }
         }
       },
-      "Microsoft.Web.Infrastructure/1.0.0": {
+      "Microsoft.Web.Infrastructure/2.0.0": {
         "runtime": {
           "lib/net40/Microsoft.Web.Infrastructure.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.20105.407"
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.34876.0"
           }
         }
       },
@@ -2995,12 +2996,12 @@
       "path": "microsoft.visualstudio.web.codegenerators.mvc/6.0.13",
       "hashPath": "microsoft.visualstudio.web.codegenerators.mvc.6.0.13.nupkg.sha512"
     },
-    "Microsoft.Web.Infrastructure/1.0.0": {
+    "Microsoft.Web.Infrastructure/2.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-FNmvLn5m2LTU/Rs2KWVo0SIIh9Ek+U0ojex7xeDaSHw/zgEP77A8vY5cVWgUtBGS8MJfDGNn8rpXJWEIQaPwTg==",
-      "path": "microsoft.web.infrastructure/1.0.0",
-      "hashPath": "microsoft.web.infrastructure.1.0.0.nupkg.sha512"
+      "sha512": "sha512-NA6F00drSYd4HZk7QcyMRz1EEdZQQpcdnt6DfNiurNcUNsmmRDpz9db2Bc3L3Lgo455BOSwNDuNjbhDLltKGKQ==",
+      "path": "microsoft.web.infrastructure/2.0.0",
+      "hashPath": "microsoft.web.infrastructure.2.0.0.nupkg.sha512"
     },
     "Microsoft.Win32.Primitives/4.3.0": {
       "type": "package",
