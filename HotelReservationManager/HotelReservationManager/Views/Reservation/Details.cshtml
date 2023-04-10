@@ -54,13 +54,13 @@
         </dd>
     </dl>
     <h4>Clients</h4>
-    @foreach (var attendee in Model.Clients)
+    @foreach (var client in Model.Clients)
     {
-        <a asp-controller="Attendees" asp-action="Details" asp-route-id=" @attendee.ClientId"> @attendee.First_Name</a>
-        <a asp-controller="Attendees" asp-action="Details" asp-route-id=" @attendee.ClientId"> @attendee.Last_Name</a>
-        <a asp-controller="Attendees" asp-action="Details" asp-route-id=" @attendee.ClientId"> @attendee.Phone</a>
-        <a asp-controller="Attendees" asp-action="Details" asp-route-id=" @attendee.ClientId"> @attendee.E_mail</a>
-        <a asp-controller="Attendees" asp-action="Details" asp-route-id=" @attendee.ClientId"> @attendee.Adult</a>
+        <a asp-controller="Attendees" asp-action="Details" asp-route-id=" @client.ClientId"> @client.First_Name</a>
+        <a asp-controller="Attendees" asp-action="Details" asp-route-id=" @client.ClientId"> @client.Last_Name</a>
+        <a asp-controller="Attendees" asp-action="Details" asp-route-id=" @client.ClientId"> @client.Phone</a>
+        <a asp-controller="Attendees" asp-action="Details" asp-route-id=" @client.ClientId"> @client.E_mail</a>
+        <a asp-controller="Attendees" asp-action="Details" asp-route-id=" @client.ClientId"> @client.Adult</a>
     }
 </div>
 <div>

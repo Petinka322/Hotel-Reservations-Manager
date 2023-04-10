@@ -78,9 +78,11 @@ namespace HotelReservationManager.Controllers
         // POST: Reservation/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ResId,RoomsId,Username,Arrival_date,Departure_date, Breakfast, All_Inclusive, Price")] Reservation reservation)
+        public async Task<IActionResult> Create([Bind("ResId,RoomsId,Username,Arrival_date,Departure_date, Breakfast, All_Inclusive, Price, Clients")] Reservation reservation, Clients clients)
         {
             var room = _context.Rooms.Where(m => m.RoomsId == reservation.RoomsId).FirstOrDefault();
+            var Adult = reservation.Clients.Count(m => m.Adult);
+            var Child = reservation.Clients.Count(m => !m.Adult);
             if (reservation.RoomsId <= 0)
             {
                 return Problem("The room number cannot be below or equal to 0!");
@@ -106,7 +108,7 @@ namespace HotelReservationManager.Controllers
                 }
                 if (reservation.Clients != null)
                 {
-                    reservation.Price += ((room.Price_Adult * reservation.Clients.Count(m => m.Adult) + (room.Price_Child * reservation.Clients.Count(m => !m.Adult))) * (reservation.Departure_date.Subtract(reservation.Arrival_date).Days));
+                    reservation.Price += ((room.Price_Adult * Adult) + (room.Price_Child * Child)) * (reservation.Departure_date.Subtract(reservation.Arrival_date).Days);
                 }
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
@@ -169,8 +171,10 @@ namespace HotelReservationManager.Controllers
         // POST: Reservation/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ResId,RoomsId,Username,Clients,Arrival_date,Departure_date,Breakfast,All_inclusive,Price")] Reservation reservation)
+        public async Task<IActionResult> Edit(int id, [Bind("ResId,RoomsId,Username,Clients,Arrival_date,Departure_date,Breakfast,All_inclusive,Price,Clients")] Reservation reservation)
         {
+            var Adult = reservation.Clients.Count(m => m.Adult);
+            var Child = reservation.Clients.Count(m => !m.Adult);
             var room = _context.Rooms.Where(m => m.RoomsId == reservation.RoomsId).FirstOrDefault();
             if (reservation.RoomsId <= 0)
             {
@@ -195,7 +199,10 @@ namespace HotelReservationManager.Controllers
                 {
                     reservation.Price += reservation.Departure_date.Subtract(reservation.Arrival_date).Days * 15;
                 }
-                reservation.Price += ((room.Price_Adult * reservation.Clients.Count(m => m.Adult) + (room.Price_Child * reservation.Clients.Count(m => !m.Adult))) * (reservation.Departure_date.Subtract(reservation.Arrival_date).Days));
+                if (reservation.Clients != null)
+                {
+                    reservation.Price += ((room.Price_Adult * Adult) + (room.Price_Child * Child)) * (reservation.Departure_date.Subtract(reservation.Arrival_date).Days);
+                }
                 try
                 {
                     _context.Update(reservation);
