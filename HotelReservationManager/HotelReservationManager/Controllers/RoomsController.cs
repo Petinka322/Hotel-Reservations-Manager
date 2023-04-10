@@ -61,7 +61,7 @@ namespace HotelReservationManager.Controllers
                     break;
             }
 
-            int pageSize = 5;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(rooms.ToPagedList(pageNumber, pageSize));
         }

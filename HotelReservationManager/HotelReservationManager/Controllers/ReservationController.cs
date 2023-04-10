@@ -53,7 +53,7 @@ namespace HotelReservationManager.Controllers
                     break;
             }
 
-            int pageSize = 5;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(reservations.ToPagedList(pageNumber, pageSize));
         }
@@ -104,7 +104,10 @@ namespace HotelReservationManager.Controllers
                 {
                     reservation.Price += reservation.Departure_date.Subtract(reservation.Arrival_date).Days * 15;
                 }
-                reservation.Price += ((room.Price_Adult * reservation.Clients.Count(m => m.Adult) + (room.Price_Child * reservation.Clients.Count(m => !m.Adult))) * (reservation.Departure_date.Subtract(reservation.Arrival_date).Days));
+                if (reservation.Clients != null)
+                {
+                    reservation.Price += ((room.Price_Adult * reservation.Clients.Count(m => m.Adult) + (room.Price_Child * reservation.Clients.Count(m => !m.Adult))) * (reservation.Departure_date.Subtract(reservation.Arrival_date).Days));
+                }
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
